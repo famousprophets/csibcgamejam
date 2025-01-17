@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://di231qwc36x20"]
+
+[ext_resource type="Texture2D" uid="uid://cx46j7fqmbi6v" path="res://images/placeholders/ninepatchrust.jpg" id="1_6d2jq"]
+
+[node name="combatwindowdef" type="NinePatchRect"]
+size_flags_horizontal = 3
+texture = ExtResource("1_6d2jq")
+region_rect = Rect2(0, 2, 160, 223)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
