@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhdqp78yo3apk"]
+
+[ext_resource type="Texture2D" uid="uid://4ldvdr74ql0f" path="res://images/whiteguisprite.png" id="1_1ajqk"]
+
+[node name="battleenemy" type="TextureButton"]
+self_modulate = Color(0.772549, 0.129412, 0.0588235, 1)
+offset_left = 151.0
+offset_top = 92.0
+offset_right = 191.0
+offset_bottom = 132.0
+scale = Vector2(2.52128, 2.56768)
+texture_normal = ExtResource("1_1ajqk")

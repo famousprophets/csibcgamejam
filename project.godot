@@ -14,6 +14,10 @@ config/name="csibcgamejam"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Debug="*res://debug.gd"
+
 [display]
 
 window/size/borderless=true

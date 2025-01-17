@@ -1,16 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://ml3s27plb5mx"]
+[gd_scene load_steps=4 format=3 uid="uid://ml3s27plb5mx"]
 
 [ext_resource type="PackedScene" uid="uid://di231qwc36x20" path="res://combatwindowdef.tscn" id="1_ca8bd"]
-
-[sub_resource type="Theme" id="Theme_xvtwc"]
+[ext_resource type="Theme" uid="uid://douq2ktq61pui" path="res://defaulttheme.tres" id="1_yk3qo"]
+[ext_resource type="Texture2D" uid="uid://4k4ubkajrcwi" path="res://images/placeholders/de98243074f2bb5f7d7c43f749626c12.jpg" id="2_6fdeh"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_yk3qo")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_6fdeh")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -24,7 +36,6 @@ offset_top = -165.0
 offset_right = 280.0
 grow_horizontal = 2
 grow_vertical = 0
-theme = SubResource("Theme_xvtwc")
 
 [node name="Party" parent="HBoxContainer" instance=ExtResource("1_ca8bd")]
 layout_mode = 2
@@ -32,3 +43,41 @@ layout_mode = 2
 [node name="Enemies" parent="HBoxContainer" instance=ExtResource("1_ca8bd")]
 layout_mode = 2
 size_flags_stretch_ratio = 1.86
+
+[node name="Options" parent="." instance=ExtResource("1_ca8bd")]
+layout_mode = 2
+anchor_left = -0.253472
+anchor_right = -0.290799
+offset_left = 638.0
+offset_top = 483.0
+offset_right = 856.0
+offset_bottom = 648.0
+size_flags_stretch_ratio = 1.86
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Options/VBoxContainer"]
+layout_mode = 2
+text = "Fight"
+
+[node name="Button2" type="Button" parent="Options/VBoxContainer"]
+layout_mode = 2
+text = "Defend"
+
+[node name="Button3" type="Button" parent="Options/VBoxContainer"]
+layout_mode = 2
+text = "Skills"
+
+[node name="Button4" type="Button" parent="Options/VBoxContainer"]
+layout_mode = 2
+text = "Item"
+
+[node name="Button5" type="Button" parent="Options/VBoxContainer"]
+layout_mode = 2
+text = "Flee"
