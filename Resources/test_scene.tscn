@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvbi6oktbuci2"]
+
+[ext_resource type="PackedScene" uid="uid://dm51f6ndh3dol" path="res://scenes/slot.tscn" id="1_d6sdr"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Manager" type="Panel" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Inventory" type="GridContainer" parent="UI/Manager"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 5
+
+[node name="Slot" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot2" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot3" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot4" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot5" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot6" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot7" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot8" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot9" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot10" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot11" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot12" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot13" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot14" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot15" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot16" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot17" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot18" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot19" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot20" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot21" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot22" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot23" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot24" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot25" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
+layout_mode = 2

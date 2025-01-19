@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://7lx4alvir5p1"]
+
+[ext_resource type="PackedScene" uid="uid://o73lep73xow0" path="res://char.tscn" id="1_2fpw3"]
+[ext_resource type="Texture2D" uid="uid://btauj71r3cxrw" path="res://images/placeholders/World04_003_ Outlaw.png" id="2_bf60n"]
+
+[node name="PlayerGroup" type="Node2D"]
+
+[node name="char" parent="." instance=ExtResource("1_2fpw3")]
+
+[node name="Sprite2D" parent="char" index="0"]
+texture = ExtResource("2_bf60n")
+
+[editable path="char"]

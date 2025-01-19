@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://ml3s27plb5mx"]
+[gd_scene load_steps=6 format=3 uid="uid://ml3s27plb5mx"]
 
 [ext_resource type="PackedScene" uid="uid://di231qwc36x20" path="res://combatwindowdef.tscn" id="1_ca8bd"]
 [ext_resource type="Theme" uid="uid://douq2ktq61pui" path="res://defaulttheme.tres" id="1_yk3qo"]
 [ext_resource type="Texture2D" uid="uid://4k4ubkajrcwi" path="res://images/placeholders/de98243074f2bb5f7d7c43f749626c12.jpg" id="2_6fdeh"]
+[ext_resource type="PackedScene" uid="uid://ode3uns5e5dm" path="res://battleplayer.tscn" id="4_rmfut"]
+[ext_resource type="PackedScene" uid="uid://bhdqp78yo3apk" path="res://battleenemy.tscn" id="5_lui7p"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3
@@ -46,7 +48,7 @@ size_flags_stretch_ratio = 1.86
 
 [node name="Options" parent="." instance=ExtResource("1_ca8bd")]
 layout_mode = 2
-anchor_left = -0.253472
+anchor_left = -0.290799
 anchor_right = -0.290799
 offset_left = 638.0
 offset_top = 483.0
@@ -59,6 +61,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -3.0
+offset_right = -6.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -81,3 +86,71 @@ text = "Item"
 [node name="Button5" type="Button" parent="Options/VBoxContainer"]
 layout_mode = 2
 text = "Flee"
+
+[node name="player" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="battleplayer" parent="player" instance=ExtResource("4_rmfut")]
+layout_mode = 0
+offset_left = 955.0
+offset_top = 160.0
+offset_right = 989.0
+offset_bottom = 194.0
+
+[node name="battleplayer2" parent="player" instance=ExtResource("4_rmfut")]
+layout_mode = 0
+offset_left = 997.0
+offset_top = 221.0
+offset_right = 1031.0
+offset_bottom = 255.0
+
+[node name="battleplayer3" parent="player" instance=ExtResource("4_rmfut")]
+layout_mode = 0
+offset_left = 999.0
+offset_top = 294.0
+offset_right = 1033.0
+offset_bottom = 328.0
+
+[node name="battleplayer4" parent="player" instance=ExtResource("4_rmfut")]
+layout_mode = 0
+offset_left = 970.0
+offset_top = 355.0
+offset_right = 1004.0
+offset_bottom = 389.0
+
+[node name="enemies" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 41.0
+offset_bottom = 43.0
+
+[node name="battleenemy" parent="enemies" instance=ExtResource("5_lui7p")]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 91.0
+offset_right = 215.0
+offset_bottom = 131.0
+
+[node name="battleenemy2" parent="enemies" instance=ExtResource("5_lui7p")]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 163.0
+offset_right = 154.0
+offset_bottom = 203.0
+
+[node name="battleenemy3" parent="enemies" instance=ExtResource("5_lui7p")]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 237.0
+offset_right = 166.0
+offset_bottom = 277.0
+
+[node name="battleenemy4" parent="enemies" instance=ExtResource("5_lui7p")]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 313.0
+offset_right = 197.0
+offset_bottom = 353.0

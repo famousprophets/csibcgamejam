@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://o73lep73xow0"]
+
+[ext_resource type="Script" path="res://char.gd" id="1_jbt6h"]
+[ext_resource type="Texture2D" uid="uid://bbu5jkuejm00a" path="res://images/placeholders/World01_007_Pirate.png" id="1_lnccx"]
+[ext_resource type="Texture2D" uid="uid://e1wje77pcgii" path="res://images/guisprite.png" id="3_s5ojy"]
+
+[sub_resource type="Animation" id="Animation_si8kl"]
+resource_name = "hurt"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jjnuc"]
+_data = {
+"hurt": SubResource("Animation_si8kl")
+}
+
+[node name="char" type="CharacterBody2D"]
+script = ExtResource("1_jbt6h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_lnccx")
+
+[node name="focus" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-44, 0)
+texture = ExtResource("3_s5ojy")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_top = -75.0
+offset_right = 4.0
+offset_bottom = -48.0
+value = 100.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jjnuc")
+}

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddnrkxq3683ub"]
+
+[ext_resource type="Script" path="res://character_1.gd" id="1_hcp6k"]
+[ext_resource type="Texture2D" uid="uid://bbu5jkuejm00a" path="res://images/placeholders/World01_007_Pirate.png" id="2_8t8mb"]
+
+[node name="Character1" type="Panel"]
+script = ExtResource("1_hcp6k")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_8t8mb")

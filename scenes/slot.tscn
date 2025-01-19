@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm51f6ndh3dol"]
+
+[ext_resource type="Script" path="res://slot.gd" id="1_aa2a0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_25tjq"]
+bg_color = Color(0.760822, 0.539609, 0.465217, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.569032, 0.262865, 0.0587509, 1)
+
+[node name="Slot" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_25tjq")
+script = ExtResource("1_aa2a0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
