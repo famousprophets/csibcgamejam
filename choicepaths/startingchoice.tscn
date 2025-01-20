@@ -1,6 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://bpekwofujgio7"]
+[gd_scene load_steps=2 format=3 uid="uid://bgo7ebey23w8g"]
 
-[ext_resource type="Script" path="res://choicepaths/choice_scene_template.gd" id="1_pwqd3"]
+[sub_resource type="GDScript" id="GDScript_h48uo"]
+script/source = "extends Control
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$Panel/RichTextLabel.text = \"Having been picked as the leader of the caravan, the villagers look to you for guidance. A government scout riding back to Castle Anatolia temporarily joins your ranks. He warns you of an encroaching massive horde of the undead, sweeping through the region, only a few days walking distance from the village. It seems you'd best not dawdle. A plague doctor also joins your ranks. They can heal wounded soldiers. Their effectiveness increases if you obtain better medical supplies. Speaking of supplies, a merchant is offering to sell you caravan supplies in exchange for valuables. The prices are exorbitant, but you most definitely need the supplies. What do you do?\"
+	$Panel/HBoxContainer/Button.text = \"Have the villagers trade off their valuables and baubles\"
+	$Panel/HBoxContainer/Button2.text = \"Exercise the authority of the government scout, and intimidate the merchant\"
+	$Panel/HBoxContainer/Button3.text = \"Take only the most able bodied villagers with you, eliminating the need for extra supplies\"
+	$Panel/HBoxContainer/Button4.text = \"Rob that bitch ass merchant lmfao\"
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+
+func _on_button_pressed():
+	
+	pass # Replace with function body.
+
+
+func _on_button_2_pressed():
+	
+	pass # Replace with function body.
+
+
+func _on_button_3_pressed():
+	
+	pass # Replace with function body.
+
+
+func _on_button_4_pressed():
+	
+	pass # Replace with function body.
+"
 
 [node name="ChoiceSceneTemplate" type="Control"]
 layout_mode = 3
@@ -9,7 +41,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_pwqd3")
+script = SubResource("GDScript_h48uo")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -60,22 +92,7 @@ size_flags_horizontal = 3
 text = "the glob"
 autowrap_mode = 2
 
-[node name="ExitButton" type="Button" parent="Panel"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -75.5
-offset_top = -151.0
-offset_right = 75.5
-grow_horizontal = 2
-grow_vertical = 0
-text = "Onwards..."
-
 [connection signal="pressed" from="Panel/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/Button4" to="." method="_on_button_4_pressed"]
-[connection signal="pressed" from="Panel/ExitButton" to="." method="_on_exit_button_pressed"]

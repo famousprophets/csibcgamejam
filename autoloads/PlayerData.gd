@@ -20,9 +20,9 @@ func classassign(x):
 		defense-=2
 		attack=1
 
-var hp : int = 10
-var max_hp : int = 10
-var level = 0
+var hp : int = 30
+var max_hp : int = 30
+var veterans = 0
 var attack : int = 0
 var defense : int = 0
 var deathchance : int = 25 - (defense * 5)
@@ -31,15 +31,18 @@ var food : int = 0
 var morale : int = 0
 var injured : int = 0
 var gold : int = 0
-var horses = 2
+var horses = 4
 var caravanspeed = (horses / 4) * 25
 var onfoot = false
 var time = 0
+var charisma = 0
+var authority = 0
+var isevil = false
 
 #distance to travel to the castle is 500 miles, 
 
 func cantmove():
-	if horses > 3 && not onfoot:
+	if horses >= 3 && not onfoot:
 		caravanspeed = (horses / 4) * 25
 	else: 
 		caravanspeed = 0
