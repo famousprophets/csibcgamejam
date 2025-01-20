@@ -1,0 +1,217 @@
+[gd_scene load_steps=20 format=3 uid="uid://3mbm1ot2n30r"]
+
+[ext_resource type="Script" path="res://caravan.gd" id="1_ncsth"]
+[ext_resource type="Texture2D" uid="uid://c61mtx2v73sko" path="res://backgrounds/sky.png" id="1_q54ur"]
+[ext_resource type="Shader" path="res://scrollingshader2.gdshader" id="2_syhed"]
+[ext_resource type="Texture2D" uid="uid://cd174dl7potnn" path="res://backgrounds/treeline_2.png" id="3_romrw"]
+[ext_resource type="Shader" path="res://scrollingshader.gdshader" id="4_jq43u"]
+[ext_resource type="Texture2D" uid="uid://20xddxid7hcg" path="res://backgrounds/treeline_1.png" id="5_lgafk"]
+[ext_resource type="Texture2D" uid="uid://bng05plok0abg" path="res://images/trail.png" id="6_613i6"]
+[ext_resource type="Script" path="res://stat_display.gd" id="6_g172l"]
+[ext_resource type="Texture2D" uid="uid://dh7ohvwh0l3bj" path="res://images/ShitWheel.png" id="7_t5iyu"]
+[ext_resource type="Texture2D" uid="uid://brdky4miy0uqg" path="res://images/carriag_with_person..png" id="8_s7hyg"]
+[ext_resource type="Texture2D" uid="uid://cty0qa0aer8q" path="res://images/BackHorse..png" id="9_5m2yk"]
+[ext_resource type="Texture2D" uid="uid://cbglhl3e2388s" path="res://images/BallerAssHorse..png" id="10_0febk"]
+[ext_resource type="Script" path="res://horsecount.gd" id="12_hvuhp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q543a"]
+shader = ExtResource("2_syhed")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rrkr0"]
+shader = ExtResource("4_jq43u")
+
+[sub_resource type="LabelSettings" id="LabelSettings_isodf"]
+font_size = 60
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1owsk"]
+
+[sub_resource type="Animation" id="Animation_xxc33"]
+resource_name = "spin"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_45imb"]
+_data = {
+"spin": SubResource("Animation_xxc33")
+}
+
+[node name="Caravan" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ncsth")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.266908, 0.0786404, 0.0917346, 1)
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+self_modulate = Color(0.397806, 0.162321, 0.494753, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -98.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00109, 1.00803)
+texture = ExtResource("1_q54ur")
+
+[node name="FakeMenu" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_q543a")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -92.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_romrw")
+
+[node name="Pattern" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_rrkr0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -89.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.999007, 1)
+texture = ExtResource("5_lgafk")
+
+[node name="Caravan Stats" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 141.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.237826, 0.237826)
+
+[node name="Stat Display" type="Label" parent="Caravan Stats"]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = SubResource("LabelSettings_isodf")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_g172l")
+
+[node name="Button" type="Button" parent="Caravan Stats"]
+layout_mode = 2
+text = "Soldiers: "
+
+[node name="Button2" type="Button" parent="Caravan Stats"]
+layout_mode = 2
+text = "Food Supply:"
+
+[node name="Button3" type="Button" parent="Caravan Stats"]
+layout_mode = 2
+text = "Morale:"
+
+[node name="Button4" type="Button" parent="Caravan Stats"]
+layout_mode = 2
+text = "Speed:"
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_613i6")
+
+[node name="Backwheel1" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 394.0
+offset_top = 522.0
+offset_right = 522.0
+offset_bottom = 650.0
+scale = Vector2(0.58123, 0.58123)
+texture = ExtResource("7_t5iyu")
+
+[node name="Backwheel2" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 540.0
+offset_top = 532.0
+offset_right = 668.0
+offset_bottom = 660.0
+scale = Vector2(0.533627, 0.533627)
+texture = ExtResource("7_t5iyu")
+
+[node name="Carriage" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 324.0
+offset_top = 93.0
+offset_right = 452.0
+offset_bottom = 221.0
+scale = Vector2(4.60034, 4.60034)
+texture = ExtResource("8_s7hyg")
+
+[node name="Frontwheel2" type="TextureRect" parent="Carriage"]
+layout_mode = 0
+offset_left = 11.0861
+offset_top = 95.8625
+offset_right = 139.086
+offset_bottom = 223.862
+scale = Vector2(0.136139, 0.136139)
+texture = ExtResource("7_t5iyu")
+
+[node name="Horse2" type="TextureRect" parent="Carriage"]
+material = SubResource("CanvasItemMaterial_1owsk")
+layout_mode = 0
+offset_left = 8.69502
+offset_top = 2.82588
+offset_right = 136.695
+offset_bottom = 130.826
+scale = Vector2(0.924894, 0.924894)
+texture = ExtResource("9_5m2yk")
+script = ExtResource("12_hvuhp")
+
+[node name="Horse" type="TextureRect" parent="Carriage"]
+layout_mode = 0
+offset_left = 4.13014
+offset_top = 6.95601
+offset_right = 132.13
+offset_bottom = 134.956
+scale = Vector2(0.924894, 0.924894)
+texture = ExtResource("10_0febk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Carriage"]
+root_node = NodePath("Frontwheel1")
+libraries = {
+"": SubResource("AnimationLibrary_45imb")
+}
+
+[node name="Frontwheel1" type="TextureRect" parent="Carriage/AnimationPlayer"]
+texture_filter = 1
+offset_left = 507.0
+offset_top = 537.0
+offset_right = 635.0
+offset_bottom = 665.0
+rotation = -0.00126404
+scale = Vector2(0.615773, 0.628276)
+texture = ExtResource("7_t5iyu")
+metadata/_edit_use_anchors_ = true

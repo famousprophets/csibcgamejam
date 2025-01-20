@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://4tvpgmxekshy"]
+[gd_scene load_steps=10 format=3 uid="uid://4tvpgmxekshy"]
 
 [ext_resource type="Script" path="res://char_select_screen.gd" id="1_v1wtw"]
 [ext_resource type="PackedScene" uid="uid://odlir6lv7nvu" path="res://charbutton.tscn" id="2_2iuwq"]
 [ext_resource type="Texture2D" uid="uid://e1wje77pcgii" path="res://images/guisprite.png" id="2_gn7en"]
-[ext_resource type="Texture2D" uid="uid://bbu5jkuejm00a" path="res://images/placeholders/World01_007_Pirate.png" id="2_gqj4u"]
+[ext_resource type="Texture2D" uid="uid://2klxdbw31vcb" path="res://images/peasant.png" id="4_q44od"]
+[ext_resource type="Texture2D" uid="uid://b2o0krhwsy35d" path="res://images/Poacher.png" id="5_37d8f"]
+[ext_resource type="Texture2D" uid="uid://cdjjuqa0k4ahw" path="res://images/knight.png" id="6_hnwi0"]
+[ext_resource type="Texture2D" uid="uid://up1k02qu2ah2" path="res://images/Barbarian.png" id="7_el0pm"]
 
 [sub_resource type="Theme" id="Theme_6dt43"]
 
@@ -64,11 +67,13 @@ offset_right = 32.0
 offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.10204, 1.10204)
 
 [node name="char1" parent="NinePatchRect/VBoxContainer" instance=ExtResource("2_2iuwq")]
 layout_mode = 2
-texture_normal = ExtResource("2_gqj4u")
-texture_pressed = ExtResource("2_gqj4u")
+texture_normal = ExtResource("4_q44od")
+texture_pressed = ExtResource("4_q44od")
+stretch_mode = 3
 
 [node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/char1"]
 layout_mode = 0
@@ -124,8 +129,8 @@ grow_vertical = 2
 
 [node name="char1" parent="NinePatchRect2/VBoxContainer" instance=ExtResource("2_2iuwq")]
 layout_mode = 2
-texture_normal = ExtResource("2_gqj4u")
-texture_pressed = ExtResource("2_gqj4u")
+texture_normal = ExtResource("5_37d8f")
+texture_pressed = ExtResource("5_37d8f")
 
 [node name="Label" type="Label" parent="NinePatchRect2/VBoxContainer/char1"]
 layout_mode = 0
@@ -182,8 +187,8 @@ grow_vertical = 2
 
 [node name="char1" parent="NinePatchRect3/VBoxContainer" instance=ExtResource("2_2iuwq")]
 layout_mode = 2
-texture_normal = ExtResource("2_gqj4u")
-texture_pressed = ExtResource("2_gqj4u")
+texture_normal = ExtResource("6_hnwi0")
+texture_pressed = ExtResource("6_hnwi0")
 
 [node name="Label" type="Label" parent="NinePatchRect3/VBoxContainer/char1"]
 layout_mode = 0
@@ -238,8 +243,8 @@ grow_vertical = 2
 
 [node name="char1" parent="NinePatchRect4/VBoxContainer" instance=ExtResource("2_2iuwq")]
 layout_mode = 2
-texture_normal = ExtResource("2_gqj4u")
-texture_pressed = ExtResource("2_gqj4u")
+texture_normal = ExtResource("7_el0pm")
+texture_pressed = ExtResource("7_el0pm")
 
 [node name="Label" type="Label" parent="NinePatchRect4/VBoxContainer/char1"]
 layout_mode = 0

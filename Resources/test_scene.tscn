@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvbi6oktbuci2"]
+[gd_scene load_steps=11 format=3 uid="uid://bvbi6oktbuci2"]
 
+[ext_resource type="Script" path="res://Resources/Manager.gd" id="1_3kuxy"]
 [ext_resource type="PackedScene" uid="uid://dm51f6ndh3dol" path="res://scenes/slot.tscn" id="1_d6sdr"]
+[ext_resource type="Script" path="res://Resources/inventory.gd" id="1_h2ubg"]
+[ext_resource type="Script" path="res://Resources/shop.gd" id="3_elqfa"]
+[ext_resource type="Script" path="res://item.gd" id="4_2ht0i"]
+[ext_resource type="Resource" uid="uid://dn36w1amy3fr2" path="res://Resources/new_resource.tres" id="5_bc4cf"]
+[ext_resource type="Texture2D" uid="uid://dhdcnhp6b7qru" path="res://images/mercant.png" id="7_nlryt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5x2l"]
+line_spacing = 3.005
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_c3dj6"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_q01fe"]
+font_size = 41
 
 [node name="TestScene" type="Node2D"]
 
@@ -12,12 +28,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3kuxy")
 
 [node name="Inventory" type="GridContainer" parent="UI/Manager"]
+unique_name_in_owner = true
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 134.0
+offset_top = 136.0
+offset_right = 270.0
+offset_bottom = 272.0
+scale = Vector2(2.05691, 2.05691)
 columns = 5
+script = ExtResource("1_h2ubg")
 
 [node name="Slot" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
 layout_mode = 2
@@ -93,3 +115,104 @@ layout_mode = 2
 
 [node name="Slot25" parent="UI/Manager/Inventory" instance=ExtResource("1_d6sdr")]
 layout_mode = 2
+
+[node name="Shop" type="GridContainer" parent="UI/Manager"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 618.0
+offset_top = 215.0
+offset_right = 698.0
+offset_bottom = 295.0
+scale = Vector2(2.36684, 2.36684)
+columns = 3
+script = ExtResource("3_elqfa")
+items = Array[ExtResource("4_2ht0i")]([ExtResource("5_bc4cf"), ExtResource("5_bc4cf"), ExtResource("5_bc4cf")])
+
+[node name="Slot" parent="UI/Manager/Shop" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot2" parent="UI/Manager/Shop" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot3" parent="UI/Manager/Shop" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot4" parent="UI/Manager/Shop" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot5" parent="UI/Manager/Shop" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot6" parent="UI/Manager/Shop" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot7" parent="UI/Manager/Shop" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot8" parent="UI/Manager/Shop" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Slot9" parent="UI/Manager/Shop" instance=ExtResource("1_d6sdr")]
+layout_mode = 2
+
+[node name="Currency" type="HBoxContainer" parent="UI/Manager"]
+layout_mode = 0
+offset_top = 591.0
+offset_right = 128.0
+offset_bottom = 646.0
+
+[node name="Label" type="Label" parent="UI/Manager/Currency"]
+layout_mode = 2
+text = "Gold:"
+label_settings = SubResource("LabelSettings_v5x2l")
+
+[node name="Balance" type="Label" parent="UI/Manager/Currency"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_c3dj6")
+
+[node name="TextureRect" type="TextureRect" parent="UI/Manager"]
+layout_mode = 0
+offset_left = 895.0
+offset_top = 218.0
+offset_right = 959.0
+offset_bottom = 282.0
+scale = Vector2(2.68477, 2.68477)
+texture = ExtResource("7_nlryt")
+
+[node name="Label2" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -137.5
+offset_right = 137.5
+offset_bottom = 57.0
+grow_horizontal = 2
+text = "The Merchant"
+label_settings = SubResource("LabelSettings_q01fe")
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI"]
+offset_left = 611.0
+offset_top = 64.0
+offset_right = 1145.0
+offset_bottom = 211.0
+text = "Profiteering at the end of the world, This merchant seems more at home amongst the nether beasts. It'd be wise to stock up, as unreasonable as his prices are. What good is gold if you're dead?
+
+Test Item: 5 Gold. Placeholder Does Nothing
+"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI"]
+offset_left = 611.0
+offset_top = 416.0
+offset_right = 1145.0
+offset_bottom = 563.0
+text = "You can attempt to rob the merchant, although you'll have to deal with his guards."
+
+[node name="Button" type="Button" parent="UI/RichTextLabel2"]
+layout_mode = 0
+offset_top = 57.0
+offset_right = 82.0
+offset_bottom = 88.0
+text = "Rob Him?"

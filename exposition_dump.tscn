@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0cwe418vgupc"]
+
+[ext_resource type="Script" path="res://button.gd" id="1_swbdi"]
+
+[node name="ExpositionDump" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_right = 1152.0
+offset_bottom = 1152.0
+theme_override_font_sizes/normal_font_size = 32
+text = "The year is 14XX. In the midst of a long and brutal war, a crack tears through the sky and through the earth, from which beasts only heard of in tall tales come crawling through. Grotesque, monstrous, and extroardinarily powerful, you have no chance of fighting back. Throw aside your pride, and flee. Your only hope of survival is to escape to Castle Anatolia, the fortress capital of the World. Surely there, the triply thick walls, the ballistas, and the tens of thousands of garrisoned soldiers will be able to defend. They are the last hope for humanity, and the last hope for your village. Go there. Form a caravan and reach that Castle at any cost."
+
+[node name="Button" type="Button" parent="RichTextLabel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Go Forth"
+script = ExtResource("1_swbdi")
+
+[connection signal="pressed" from="RichTextLabel/Button" to="RichTextLabel/Button" method="_on_pressed"]
