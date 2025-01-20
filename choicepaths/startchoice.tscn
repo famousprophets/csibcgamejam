@@ -3,6 +3,7 @@
 [sub_resource type="GDScript" id="GDScript_nwg88"]
 script/source = "extends Control
 
+var fight = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Panel/ExitButton.hide()
@@ -70,12 +71,15 @@ func _on_button_3_pressed():
 
 func _on_button_4_pressed():
 	choicemade()
-	$Panel/RichTextLabel.text = \"Outcome\"
-	pass # Replace with function body.
+	$Panel/RichTextLabel.text = \"The merchant seems to have been expecting retaliation. Guards jump out of his cart and form a defensive wall around him.\"
+	fight = true
 
 
 func _on_exit_button_pressed():
-	get_tree().change_scene_to_file(\"res://caravan.tscn\")
+	if fight == true:
+		get_tree().change_scene_to_file(\"res://battle_scene.tscn\")
+	else:
+		get_tree().change_scene_to_file(\"res://caravan.tscn\")
 "
 
 [node name="ChoiceSceneTemplate" type="Control"]
