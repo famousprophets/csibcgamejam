@@ -48,4 +48,4 @@ func _on_button_4_pressed():
 
 
 func _on_exit_button_pressed():
-	get_tree().change_scene_to_file("res://caravan.tscn")
+	get_tree().change_scene_to_file("res://caravanscreen/caravan.tscn")
