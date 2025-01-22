@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://das2osgsu15dc"]
+[gd_scene load_steps=5 format=3 uid="uid://das2osgsu15dc"]
 
 [ext_resource type="Script" path="res://shop.gd" id="1_ij3hh"]
 [ext_resource type="Texture2D" uid="uid://dhdcnhp6b7qru" path="res://images/mercant.png" id="2_0j81x"]
+[ext_resource type="Script" path="res://invreader.gd" id="2_n0g4x"]
 [ext_resource type="Script" path="res://merchantsmalltalk.gd" id="3_ye2qt"]
 
 [node name="Shopv2" type="Control"]
@@ -33,6 +34,38 @@ grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("1_ij3hh")
 
+[node name="Button" type="Button" parent="Panel/Shop"]
+layout_mode = 2
+text = "Oil Flask: 2 gold"
+
+[node name="Button2" type="Button" parent="Panel/Shop"]
+layout_mode = 2
+text = "Bandage: 1 gold"
+
+[node name="Button3" type="Button" parent="Panel/Shop"]
+layout_mode = 2
+text = "Horse Bitters: 3 gold"
+
+[node name="Button8" type="Button" parent="Panel/Shop"]
+layout_mode = 2
+text = "Assorted Entertainment: 2 gold"
+
+[node name="Button9" type="Button" parent="Panel/Shop"]
+layout_mode = 2
+text = "Lantern: 1 gold"
+
+[node name="Button4" type="Button" parent="Panel/Shop"]
+layout_mode = 2
+text = "Medical Supplies: 6 gold"
+
+[node name="Button5" type="Button" parent="Panel/Shop"]
+layout_mode = 2
+text = "Swordmanship Manual: 5 gold"
+
+[node name="Button6" type="Button" parent="Panel/Shop"]
+layout_mode = 2
+text = "Handgonne: 7 gold"
+
 [node name="Inventory" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = 2
@@ -41,6 +74,10 @@ anchor_bottom = 1.0
 offset_top = -335.0
 offset_right = 335.0
 grow_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel/Inventory"]
+layout_mode = 2
+script = ExtResource("2_n0g4x")
 
 [node name="GoldDisplay" type="Label" parent="Panel"]
 layout_mode = 0

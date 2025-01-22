@@ -10,13 +10,13 @@ func _ready() -> void:
 	if rand >= 21 && rand <=40:
 		$".".text = "In the poor lighting, the merchant and his guards look more like bandits than traders."
 	if rand >= 41 && rand <=60:
-		$".".text = "The merchant is grinning grotesquely. He knows you have no choice but to accept his prices"
+		$".".text = "The merchant is grinning grotesquely. He knows you have no choice but to accept his prices and he derives some sick pleasure from it."
 	if rand >= 61 && rand <=80:
 		$".".text = "The merchant seems more at home amongst the nether beasts. Something about him is offputting."
 	if rand >= 81 && rand <=99:
-		$".".text = "The merchant idly whittles away while your peruse the store."
+		$".".text = "The merchant idly whittles away while you peruse his inventory."
 	if rand == 100:
-		$".".text = "fix your hearts or die."
+		$".".text = "Fix your hearts or die."
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

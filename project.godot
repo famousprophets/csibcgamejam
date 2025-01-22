@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 Debug="*res://debug.gd"
 PlayerData="*res://autoloads/PlayerData.gd"
 Travelmanager="*res://autoloads/travelmanager.gd"
+Pinventory="*res://pinventory.tscn"
 
 [display]
 
