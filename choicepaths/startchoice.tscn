@@ -79,7 +79,7 @@ func _on_exit_button_pressed():
 	if fight == true:
 		get_tree().change_scene_to_file(\"res://battle_scene.tscn\")
 	else:
-		get_tree().change_scene_to_file(\"res://caravan.tscn\")
+		get_tree().change_scene_to_file(\"res://caravanscreen/caravan.tscn\")
 "
 
 [node name="ChoiceSceneTemplate" type="Control"]

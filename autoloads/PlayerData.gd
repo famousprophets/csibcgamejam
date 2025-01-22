@@ -8,7 +8,8 @@ enum ClassChoice {
 	Poacher,
 	Barbarian
 }
-var Class = ClassChoice.Peasant
+var Class = "Peasant"
+var ClassTexture = load("res://images/Barbarian.png")
 
 func classassign(x):
 	if x == "Peasant":
@@ -18,6 +19,7 @@ func classassign(x):
 		attack-=1
 		charisma+=2
 		morale+=2
+		ClassTexture = load("res://images/peasant.png")
 	elif x == "Knight":
 		defense-=3
 		attack+=1
@@ -28,9 +30,11 @@ func classassign(x):
 		gold+=5
 		authority+=2
 		teaching +=4
+		ClassTexture = load("res://images/knight.png")
 	elif x == "Poacher":
 		defense+=2
 		forage+=2
+		ClassTexture = load("res://images/Poacher.png")
 	elif x == "Barbarian":
 		isevil = true
 		defense-=5
@@ -38,6 +42,7 @@ func classassign(x):
 		gold+=3
 		teaching +=6
 		authority +=3
+		ClassTexture = load("res://images/Barbarian.png")
 	elif x == "devcheat":
 		defense+=20
 		gold+=999
@@ -48,30 +53,30 @@ func classassign(x):
 		authority += 10
 		horses += 4
 
-var hp : int = 30
-var max_hp : int = 30
-var veterans = 0
-var attack : int = 0
-var defense : int = 0
-var teaching = 2
+var hp : int = 30 #Represents the number of carvan members that are uninjured
+var max_hp : int = 30 #Represents the number of carvan members you have
+var veterans = 0 #veterans just deal as much damage as 2 regular soldiers
+var attack : int = 0 #increases or decreases attack damage by 5% overall. increase or decrease sparingly
+var defense : int = 0 #increases or decreases rate of death for wounded soldiers by 5%. increase or decrease sparingly
+var teaching = 2 #increases chance of soldiers becoming veterans by 5%
 var levelupchance = teaching * 5
 var deathchance : int = 25 - (defense * 5)
 var foodconsumption : int = max_hp / 3
-var food : int = 0
-var morale : int = 4
-var injured : int = 0
-var gold : int = 0
-var horses = 4
+var food : int = 0 #amount of food. for every 3 members of the caravan, 1 food is consumed per event. keep that in mind when giving the player food
+var morale : int = 4 #morale slightly increases combat stats and the outcomes of some events. max morale is 10
+var injured : int = 0 
+var gold : int = 0 #coins are high value so dont grant too much. items cost from 1-7 gold, the most expensive being permanent upgrades
+var horses = 4 #increases caravan speed if you have above 4
 var caravanspeed = (horses / 4) * 25
 var onfoot = false
 var time = 0
-var charisma = 1
-var authority = 1
-var forage = 1
-var isevil = false
+var charisma = 1 
+var authority = 1 #authority and charisma should be checked on scenarios using persuasion. these stats are determined on character creation
+var forage = 1 #players skill in foraging food passively. increase sparingly
+var isevil = false #true if the player picks barbarian. for evil actions, evil characters shouldnt get a morale hit
 var foodgather = forage * 4
-
-#distance to travel to the castle is 500 miles, 
+var ambush = false
+#distance to travel to the castle is 500 miles
 
 func cantmove():
 	if horses >= 3 && not onfoot:
@@ -80,6 +85,13 @@ func cantmove():
 		caravanspeed = 0
 func _onready():
 	cantmove()
+func _process(delta: float) -> void:
+	if gold < 0:
+		gold = 0
+	if food < 0:
+		food = 0
+	if morale < 0:
+		morale = 0
 
 @export var speed = 0
 @export var damage = 0

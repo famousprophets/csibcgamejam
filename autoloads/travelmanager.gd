@@ -14,7 +14,7 @@ func _ready():
 # at set amounts of locations traveled, caravan encounters a canon Always present location.
 var rng = RandomNumberGenerator.new()
 
-func _process(delta):
+func findnextlocation():
 	if locationstraveled == 5:
 		pass
 	if locationstraveled == 3:
@@ -25,7 +25,7 @@ func _process(delta):
 		pass #good event
 		badluck = 0
 	elif PlayerData.food < 25:
-		var ranloc = rng.randf_range(0,4)
+		var ranloc = rng.randf_range(1,4)
 		if ranloc == 1:
 			pass #food granting location
 		if ranloc == 2:
@@ -36,7 +36,7 @@ func _process(delta):
 			pass #randombadevent
 			badluck+=1
 	elif PlayerData.max_hp < difficulty:
-		var ranloc = rng.randf_range(0,4)
+		var ranloc = rng.randf_range(1,4)
 		if ranloc == 1:
 			pass #random people granting location
 		if ranloc == 2:
@@ -47,7 +47,7 @@ func _process(delta):
 			pass #randombadevent
 			badluck+=1
 	elif PlayerData.gold < (difficulty/2):
-		var ranloc = rng.randf_range(0,4)
+		var ranloc = rng.randf_range(1,4)
 		if ranloc == 1:
 			pass 
 		if ranloc == 2:
@@ -57,3 +57,5 @@ func _process(delta):
 		if ranloc == 4:
 			pass
 			badluck+=1
+	else:
+		pass#random picked from all events

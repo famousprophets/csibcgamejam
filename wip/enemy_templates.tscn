@@ -1,0 +1,36 @@
+[gd_scene load_steps=9 format=3 uid="uid://bmp5pguur0h84"]
+
+[ext_resource type="Texture2D" uid="uid://evyhnev5puyd" path="res://images/enemies/Enemy_Bandit.png" id="1_1prpv"]
+[ext_resource type="Script" path="res://bandit.gd" id="2_wvphj"]
+[ext_resource type="Texture2D" uid="uid://ba0wuwbic7o1e" path="res://images/enemies/Enemy_strider.png" id="3_p57tp"]
+[ext_resource type="Script" path="res://strider.gd" id="4_pd8jj"]
+[ext_resource type="Texture2D" uid="uid://sfnxnhqxg18y" path="res://images/enemies/Enemy_TriloWorm.png" id="5_wscin"]
+[ext_resource type="Script" path="res://triloworm.gd" id="6_0xfjh"]
+[ext_resource type="Texture2D" uid="uid://bhg83t4qdldu5" path="res://images/enemies/Enemy_wendigo.png" id="7_w6wh3"]
+[ext_resource type="Script" path="res://wendigo.gd" id="8_ejq40"]
+
+[node name="enemy templates" type="Node2D"]
+
+[node name="Bandit" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_1prpv")
+script = ExtResource("2_wvphj")
+
+[node name="Strider" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_p57tp")
+script = ExtResource("4_pd8jj")
+
+[node name="Triloworm" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_wscin")
+script = ExtResource("6_0xfjh")
+
+[node name="Wendigo" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("7_w6wh3")
+script = ExtResource("8_ejq40")

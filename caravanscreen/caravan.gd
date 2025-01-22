@@ -10,3 +10,8 @@ func _ready():
 func _process(delta):
 	if PlayerData.caravanspeed < 15:
 		print("the caravan has halted. you can abandon your supplies and walk forward or stay in the area and search for a horse")
+
+
+
+func _on_nextloc_pressed():
+	Travelmanager.findnextlocation()

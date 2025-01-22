@@ -6,5 +6,5 @@ extends TextureButton
 
 func _on_pressed():
 	
-	playerClass = "Peasant"
-	get_tree().change_scene_to_file()
+	PlayerData.classassign("Peasant")
+	get_tree().change_scene_to_file("res://choicepaths/startchoice.tscn")

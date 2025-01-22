@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://4tvpgmxekshy"]
+[gd_scene load_steps=13 format=3 uid="uid://4tvpgmxekshy"]
 
 [ext_resource type="Script" path="res://char_select_screen.gd" id="1_v1wtw"]
 [ext_resource type="PackedScene" uid="uid://odlir6lv7nvu" path="res://charbutton.tscn" id="2_2iuwq"]
@@ -9,6 +9,45 @@
 [ext_resource type="Texture2D" uid="uid://up1k02qu2ah2" path="res://images/Barbarian.png" id="7_el0pm"]
 
 [sub_resource type="Theme" id="Theme_6dt43"]
+
+[sub_resource type="GDScript" id="GDScript_rkqk2"]
+script/source = "extends TextureButton
+
+
+@export var playerClass : String
+
+
+func _on_pressed():
+	
+	PlayerData.classassign(\"Poacher\")
+	get_tree().change_scene_to_file(\"res://choicepaths/startchoice.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_akw3w"]
+script/source = "extends TextureButton
+
+
+@export var playerClass : String
+
+
+func _on_pressed():
+	
+	PlayerData.classassign(\"Knight\")
+	get_tree().change_scene_to_file(\"res://choicepaths/startchoice.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_ssqrr"]
+script/source = "extends TextureButton
+
+
+@export var playerClass : String
+
+
+func _on_pressed():
+	
+	PlayerData.classassign(\"Barbarian\")
+	get_tree().change_scene_to_file(\"res://choicepaths/startchoice.tscn\")
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_210xj"]
 font_size = 26
@@ -24,16 +63,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_v1wtw")
 metadata/_edit_use_anchors_ = true
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StartButton" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 texture_filter = 1
@@ -69,25 +98,30 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.10204, 1.10204)
 
-[node name="char1" parent="NinePatchRect/VBoxContainer" instance=ExtResource("2_2iuwq")]
+[node name="char1" parent="NinePatchRect" instance=ExtResource("2_2iuwq")]
 layout_mode = 2
+offset_left = 9.0
+offset_top = 11.0
+offset_right = 121.0
+offset_bottom = 123.0
 texture_normal = ExtResource("4_q44od")
 texture_pressed = ExtResource("4_q44od")
-stretch_mode = 3
+stretch_mode = 0
+playerClass = ""
 
-[node name="Label" type="Label" parent="NinePatchRect/VBoxContainer/char1"]
+[node name="Label" type="Label" parent="NinePatchRect/char1"]
 layout_mode = 0
 offset_top = -48.5
 offset_right = 62.0
 offset_bottom = -25.5
 text = "Peasant"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/VBoxContainer/char1"]
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/char1"]
 layout_mode = 0
-offset_left = -66.0
-offset_top = 114.0
-offset_right = 143.0
-offset_bottom = 441.0
+offset_left = -38.0
+offset_top = 116.0
+offset_right = 171.0
+offset_bottom = 443.0
 text = "A regular villager, chosen as the leader of the caravan for his likability and strength. 
 Worldly: Bonus to diplomacy and trading
 Cohesive: Suffer less losses in combat
@@ -127,24 +161,31 @@ offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="char1" parent="NinePatchRect2/VBoxContainer" instance=ExtResource("2_2iuwq")]
+[node name="char1" parent="NinePatchRect2" instance=ExtResource("2_2iuwq")]
 layout_mode = 2
+offset_left = 8.0
+offset_top = 11.0
+offset_right = 121.0
+offset_bottom = 124.0
 texture_normal = ExtResource("5_37d8f")
 texture_pressed = ExtResource("5_37d8f")
+stretch_mode = 0
+script = SubResource("GDScript_rkqk2")
+playerClass = ""
 
-[node name="Label" type="Label" parent="NinePatchRect2/VBoxContainer/char1"]
+[node name="Label" type="Label" parent="NinePatchRect2/char1"]
 layout_mode = 0
 offset_top = -48.5
 offset_right = 62.0
 offset_bottom = -25.5
 text = "Poacher"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect2/VBoxContainer/char1"]
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect2/char1"]
 layout_mode = 0
-offset_left = -66.0
-offset_top = 114.0
-offset_right = 143.0
-offset_bottom = 488.0
+offset_left = -41.0
+offset_top = 119.0
+offset_right = 168.0
+offset_bottom = 493.0
 text = "A recluse, having grown up in the woods, she struggles with socializing and command, but excels in stealth and surivival
 Shy: Bad at diplomacy and trade
 Survivalist: Passively forages and hunts more food
@@ -171,6 +212,36 @@ theme = SubResource("Theme_6dt43")
 texture = ExtResource("2_gn7en")
 region_rect = Rect2(0, 0, 16, 16)
 
+[node name="char1" parent="NinePatchRect3" instance=ExtResource("2_2iuwq")]
+layout_mode = 2
+offset_left = 17.0
+offset_top = 16.0
+offset_right = 125.0
+offset_bottom = 124.0
+texture_normal = ExtResource("6_hnwi0")
+texture_pressed = ExtResource("6_hnwi0")
+stretch_mode = 0
+script = SubResource("GDScript_akw3w")
+playerClass = ""
+
+[node name="Label" type="Label" parent="NinePatchRect3/char1"]
+layout_mode = 0
+offset_top = -48.5
+offset_right = 62.0
+offset_bottom = -25.5
+text = "Knight"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect3/char1"]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 114.0
+offset_right = 162.0
+offset_bottom = 488.0
+text = "A student knight who happened to be visiting the village. Chosen as leader for his noble status
+Inexperienced: Caravan starts off with higher losses in combat and lower damage
+Well Read: The knight quickly adjusts theory to reality, learning and improving in combat stats rapidly
+Noble: Better trade and diplomacy. Bonus to morale"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect3"]
 layout_mode = 1
 anchors_preset = 8
@@ -178,35 +249,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -48.0
-offset_right = 32.0
-offset_bottom = 48.0
+offset_left = -48.0
+offset_top = -49.5
+offset_right = 16.0
+offset_bottom = 46.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="char1" parent="NinePatchRect3/VBoxContainer" instance=ExtResource("2_2iuwq")]
-layout_mode = 2
-texture_normal = ExtResource("6_hnwi0")
-texture_pressed = ExtResource("6_hnwi0")
-
-[node name="Label" type="Label" parent="NinePatchRect3/VBoxContainer/char1"]
-layout_mode = 0
-offset_top = -48.5
-offset_right = 62.0
-offset_bottom = -25.5
-text = "Knight"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect3/VBoxContainer/char1"]
-layout_mode = 0
-offset_left = -66.0
-offset_top = 114.0
-offset_right = 143.0
-offset_bottom = 488.0
-text = "A student knight who happened to be visiting the village. Chosen as leader for his noble status
-Inexperienced: Caravan starts off with higher losses in combat and lower damage
-Well Read: The knight quickly adjusts theory to reality, learning and improving in combat stats rapidly
-Noble: Better trade and diplomacy. Bonus to morale"
 
 [node name="NinePatchRect4" type="NinePatchRect" parent="."]
 texture_filter = 1
@@ -241,24 +289,31 @@ offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="char1" parent="NinePatchRect4/VBoxContainer" instance=ExtResource("2_2iuwq")]
+[node name="char1" parent="NinePatchRect4" instance=ExtResource("2_2iuwq")]
 layout_mode = 2
+offset_left = 12.0
+offset_top = 9.0
+offset_right = 126.0
+offset_bottom = 123.0
 texture_normal = ExtResource("7_el0pm")
 texture_pressed = ExtResource("7_el0pm")
+stretch_mode = 0
+script = SubResource("GDScript_ssqrr")
+playerClass = ""
 
-[node name="Label" type="Label" parent="NinePatchRect4/VBoxContainer/char1"]
+[node name="Label" type="Label" parent="NinePatchRect4/char1"]
 layout_mode = 0
 offset_top = -48.5
 offset_right = 62.0
 offset_bottom = -25.5
 text = "Viking"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect4/VBoxContainer/char1"]
+[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect4/char1"]
 layout_mode = 0
-offset_left = -66.0
-offset_top = 114.0
-offset_right = 143.0
-offset_bottom = 519.0
+offset_left = -51.0
+offset_top = 121.0
+offset_right = 158.0
+offset_bottom = 526.0
 text = "Formerly an enemy of the English, greater enemies have forced combatants to put these differences aside. The viking believes that ones own path should be carved through strength alone.
 Berserker: Higher losses in combat
 Survival of the Fittest: Those who survive combat rapidly improve
@@ -281,5 +336,3 @@ offset_left = 134.0
 offset_right = 134.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-
-[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
