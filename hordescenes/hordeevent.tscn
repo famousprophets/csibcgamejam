@@ -2,7 +2,7 @@
 
 [sub_resource type="GDScript" id="GDScript_1t6oo"]
 script/source = "extends Control
-
+var gameover = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Panel/ExitButton.hide()
@@ -13,55 +13,79 @@ func _ready():
 	$Panel/RichTextLabel.text = \"First, you hear their thunderous marching. Before long, a scout spots them. Soon, everyone can see them. The horde of undead. A veritable army. No, more than that. A sea of the undead. Rotting, dessicated corpses climb over eachother to be the first to reach your vulnerable caravan. With no end to them in sight, you can either hide and hope they pass, or leave behind most of your resources and trek as fast as you can.\"
 	$Panel/HBoxContainer/Button.text = \"Try your luck and hide.\"
 	$Panel/HBoxContainer/Button2.text = \"Leave behind most of your loot, and march until the caravan gives out.\"
-	$Panel/HBoxContainer/Button3.text = \"Choice 3\"
-	$Panel/HBoxContainer/Button4.text = \"Choice 4\"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 func choicemade():
+	if gameover == true: $Panel/ExitButton.text = \"Game Over.\"
 	$Panel/HBoxContainer/Button.hide()
 	$Panel/HBoxContainer/Button2.hide()
-	$Panel/HBoxContainer/Button3.hide()
-	$Panel/HBoxContainer/Button4.hide()
 	$Panel/ExitButton.show()
-
+var rng = RandomNumberGenerator.new()
+var randn : int = 0
+var glup
 func _on_button_pressed():
-	choicemade()
-	var rng = RandomNumberGenerator.new()
-	var randn = rng.randf_range(0,1)
+	rng.randomize()
+	glup = rng.randi_range(0,1)
+	randn = glup
 	if randn == 1 && Travelmanager.timescaught == 0:
+		choicemade()
+		PlayerData.max_hp = PlayerData.max_hp / 2
+		PlayerData.hp = PlayerData.max_hp / 2
+		PlayerData.gold = PlayerData.gold / 2
+		PlayerData.food = PlayerData.food / 4
+		PlayerData.horses = 4
+		PlayerData.morale = 0
+		Travelmanager.disttravel = Travelmanager.hordedist + 65
+		Travelmanager.timescaught +=1
 		$Panel/RichTextLabel.text = \"Everyone scrambles to hide themselves in the forest. You hide in a large burrow in a tree. The horde doesn't stop at the left behind caravan wagon for even a second. They immediately split into the forest and tear into the nearest caravaneers. You grab what little supplies you can and immediately begin running. After half a day of jogging, you meet up with the remains of the caravan. Everything is torn apart, and even then, you still feel you got lucky.\"
-	if randn == 1 && Travelmanager.timescaught > 0:
-		$Panel/RichTextLabel.text = \"everyone dies man lol game over\"
-	if randn == 0 && Travelmanager.timescaught == 0:
+	elif randn == 1 && Travelmanager.timescaught > 0:
+		$Panel/RichTextLabel.text = \"Everyone scrambles to hide themselves in the forest. You hide in a large burrow in a tree. The horde doesn't stop at the left behind caravan wagon for even a second. They immediately split into the forest and tear into the nearest caravaneers. You immediately begin running, but your breath gives out and as you gradually slow down, you hear the roars of the undead and the screams of the caravan members slower than you. Fortunately for you, death comes swiftly, and your head is severed from your body before you realize what even happened. Game Over\"
+		gameover = true
+		choicemade()
+	elif randn == 0 && Travelmanager.timescaught == 0:
 		$Panel/RichTextLabel.text = \"You quickly realize how foolish it was to hide. There is no end to the horde in sight. Although they don't find you or any other caravan members as far as you can tell, there now lies a massive barrier of the undead between you and Castle Anatolia. And it seems someone else has realized this as well. A member of the caravan dashes to a horse, and while screaming and hollering and attracting the attention of the entire horde, he rides the horse back in the direction you came from. You lay low for a few more hours, and when daylight breaks, you see only some undead stragglers, which the carvan quickly dispatched. Miraculously, besides the caravaneer who sacrificed himself to lead the horde away, everyone is here and unharmed. You feel that you won't get this lucky again\"
-	
-	if randn == 0 && Travelmanager.timescaught > 0:
-		$Panel/RichTextLabel.text = \"You quickly realize how foolish it was to hide. There is no end to the horde in sight. Although they don't find you or any other caravan members as far as you can tell, there now lies a massive barrier of the undead between you and Castle Anatolia. And it seems your caravan has realized this as well. In a panic, a member of the caravan dashes to a horse and tries to gather the attention of the horde, riding the horse back away from the village. The horde seems to have somehow been expecting this, a second much smaller wave of undead straggling behind pull the horse down, and with it, its rider. Seeing no other option, you stay hidden while your caravan is torn to shreds. By the time morning comes, you are unable to find anyone else. With the horde of undead between you and castle Anatolia, it seems you'll have to survive out here on your own.\"
-	pass # Replace with function body.
+		PlayerData.max_hp -= 1
+		choicemade()
+		PlayerData.hp -=1
+		PlayerData.horses = 3
+		PlayerData.morale = 5
+		Travelmanager.disttravel = Travelmanager.hordedist + 65
+		Travelmanager.timescaught +=1
+	elif randn == 0 && Travelmanager.timescaught > 0:
+		$Panel/RichTextLabel.text = \"You quickly realize how foolish it was to hide. There is no end to the horde in sight. Although they don't find you or any other caravan members as far as you can tell, there now lies a massive barrier of the undead between you and Castle Anatolia. And it seems your caravan has realized this as well. In a panic, a member of the caravan dashes to a horse and tries to gather the attention of the horde, riding the horse back away from the village. The horde seems to have somehow been expecting this, a second much smaller wave of undead straggling behind pull the horse down, and with it, its rider. Seeing no other option, you stay hidden while your caravan is torn to shreds. By the time morning comes, you are unable to find anyone else. With the horde of undead between you and castle Anatolia, you can only wait for death at the hands of nether beasts.\"
+		gameover = true
+		choicemade()
+	else:
+		$Panel/RichTextLabel.text = \"this is an error\"
+		choicemade()
+		
 
 
 func _on_button_2_pressed():
-	choicemade()
-	$Panel/RichTextLabel.text = \"Outcome\"
-	pass # Replace with function body.
-
-
-func _on_button_3_pressed():
-	choicemade()
-	$Panel/RichTextLabel.text = \"Outcome\"
-	pass # Replace with function body.
-
-
-func _on_button_4_pressed():
-	choicemade()
-	$Panel/RichTextLabel.text = \"Outcome\"
-	pass # Replace with function body.
-
+	if Travelmanager.timescaught == 0:
+		choicemade()
+		$Panel/RichTextLabel.text = \"You leave behind anything you can't carry. Your caravan marches for hours. Multiple people collapse, and you don't have the time to go back for them. By the time day breaks, only half of you are left standing.\"
+		PlayerData.max_hp = PlayerData.max_hp / 2
+		PlayerData.hp = PlayerData.max_hp / 2
+		PlayerData.gold = PlayerData.gold / 2
+		PlayerData.food = PlayerData.food / 4
+		PlayerData.horses = 4
+		PlayerData.morale = 0
+		Travelmanager.disttravel = Travelmanager.hordedist + 65
+		Travelmanager.timescaught +=1
+	else:
+		gameover = true
+		choicemade()
+		$Panel/RichTextLabel.text = \"You leave behind anything you can't carry. Your caravan marches for hours. Multiple people collapse, and you don't have the time to go back for them. Before long, you join the ranks of the fallen. A hand taps rests on your shoulder, and as you turn to face it, you feel your head sever from your body.\"
+		
 
 func _on_exit_button_pressed():
-	get_tree().change_scene_to_file(\"res://caravanscreen/caravan.tscn\")
+	if gameover == false:
+		get_tree().change_scene_to_file(\"res://caravanscreen/caravan.tscn\")
+	if gameover == true:
+		get_tree().change_scene_to_file(\"res://game_over.tscn\")
 "
 
 [node name="ChoiceSceneTemplate" type="Control"]
@@ -110,18 +134,6 @@ size_flags_horizontal = 3
 text = "the glob"
 autowrap_mode = 2
 
-[node name="Button3" type="Button" parent="Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "the glob"
-autowrap_mode = 2
-
-[node name="Button4" type="Button" parent="Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "the glob"
-autowrap_mode = 2
-
 [node name="ExitButton" type="Button" parent="Panel"]
 layout_mode = 1
 anchors_preset = 7
@@ -138,6 +150,4 @@ text = "Onwards..."
 
 [connection signal="pressed" from="Panel/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Panel/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="Panel/HBoxContainer/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="Panel/ExitButton" to="." method="_on_exit_button_pressed"]

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqd8t667ciik"]
+
+[ext_resource type="Texture2D" uid="uid://evyhnev5puyd" path="res://images/enemies/Enemy_Bandit.png" id="1_hwvvg"]
+[ext_resource type="Script" path="res://banditenemy.gd" id="2_egske"]
+
+[node name="Bandit" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_hwvvg")
+script = ExtResource("2_egske")

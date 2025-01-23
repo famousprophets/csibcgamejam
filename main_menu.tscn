@@ -1,4 +1,16 @@
-[gd_scene format=3 uid="uid://bhq5y2daui80f"]
+[gd_scene load_steps=6 format=3 uid="uid://bhq5y2daui80f"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_uua52"]
+[ext_resource type="Texture2D" uid="uid://cs14175hhfm66" path="res://images/MainMenu.png" id="1_yv1x6"]
+[ext_resource type="AudioStream" uid="uid://dy52kswd0c4wh" path="res://Music/Solar.wav" id="3_10h01"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_anf30"]
+font_size = 64
+font_color = Color(0.0606002, 0.665524, 0.692636, 1)
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_syroo"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -7,3 +19,76 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_uua52")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yv1x6")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -132.0
+offset_top = 43.0
+offset_right = 132.0
+offset_bottom = 195.0
+grow_horizontal = 2
+text = "Heavy Reins
+"
+label_settings = SubResource("LabelSettings_anf30")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 380.0
+offset_top = 619.0
+offset_right = 644.0
+offset_bottom = 771.0
+grow_horizontal = 2
+text = "Test Ver: Alkalized Kevin"
+label_settings = SubResource("LabelSettings_syroo")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -191.0
+offset_right = 62.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "PLAY"
+
+[node name="Credits" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -112.0
+offset_right = 62.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "CREDITS"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_10h01")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]

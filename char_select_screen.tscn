@@ -1,27 +1,55 @@
-[gd_scene load_steps=13 format=3 uid="uid://4tvpgmxekshy"]
+[gd_scene load_steps=12 format=3 uid="uid://jhrc3gngtcc0"]
 
-[ext_resource type="Script" path="res://char_select_screen.gd" id="1_v1wtw"]
+[ext_resource type="Texture2D" uid="uid://celsgh0ynfnbd" path="res://gradient2.png" id="1_fklqi"]
 [ext_resource type="PackedScene" uid="uid://odlir6lv7nvu" path="res://charbutton.tscn" id="2_2iuwq"]
-[ext_resource type="Texture2D" uid="uid://e1wje77pcgii" path="res://images/guisprite.png" id="2_gn7en"]
 [ext_resource type="Texture2D" uid="uid://2klxdbw31vcb" path="res://images/peasant.png" id="4_q44od"]
 [ext_resource type="Texture2D" uid="uid://b2o0krhwsy35d" path="res://images/Poacher.png" id="5_37d8f"]
 [ext_resource type="Texture2D" uid="uid://cdjjuqa0k4ahw" path="res://images/knight.png" id="6_hnwi0"]
 [ext_resource type="Texture2D" uid="uid://up1k02qu2ah2" path="res://images/Barbarian.png" id="7_el0pm"]
 
-[sub_resource type="Theme" id="Theme_6dt43"]
+[sub_resource type="GDScript" id="GDScript_gdjmt"]
+script/source = "extends Control
 
-[sub_resource type="GDScript" id="GDScript_rkqk2"]
-script/source = "extends TextureButton
+func _unhandled_key_input(event: InputEvent) -> void:
+	var inptfix: InputEventKey = event
+	if event.is_pressed():
+		var key: int = inptfix.keycode
+		match key:
+			KEY_5:
+				PlayerData.classassign(\"devcheat\")
+				get_tree().change_scene_to_file(\"res://choicepaths/startchoice.tscn\")
 
+#@onready var character_selection_box = $VBoxContainer/HBoxContainer
 
-@export var playerClass : String
-
-
-func _on_pressed():
-	
-	PlayerData.classassign(\"Poacher\")
-	get_tree().change_scene_to_file(\"res://choicepaths/startchoice.tscn\")
+#func _input(event):
+	#if event is InputEventMouseButton && event.button_index == 1 && event.is_pressed():
+		#var charNode = _get_char_node()
+		#
+		#if charNode: _set_char_selected(charNode)
+		#
+		#
+#func _get_char_node():
+	#var mousePos = get_viewport().get_mouse_position()
+	#
+	#for node in character_selection_box.get_children():
+		#if node.get_global_rect().has_point(mousePos):
+			#return node
+#
+#func _set_char_selected(charNode):
+	#PlayerData.playerCharPath = charNode.characterPath
+	#
+	#for node in character_selection_box.get_children():
+		#var isSelected = charNode == node
+		#node.set_selected(isSelected)
+#
+#func _on_start_button_pressed():
+	#if not PlayerData.playerCharPath: return
+	#
+	#get_tree().change_scene_to_file(\"res://top_down_scene.tscn\")
 "
+
+[sub_resource type="LabelSettings" id="LabelSettings_210xj"]
+font_size = 26
 
 [sub_resource type="GDScript" id="GDScript_akw3w"]
 script/source = "extends TextureButton
@@ -33,6 +61,19 @@ script/source = "extends TextureButton
 func _on_pressed():
 	
 	PlayerData.classassign(\"Knight\")
+	get_tree().change_scene_to_file(\"res://choicepaths/startchoice.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_rkqk2"]
+script/source = "extends TextureButton
+
+
+@export var playerClass : String
+
+
+func _on_pressed():
+	
+	PlayerData.classassign(\"Poacher\")
 	get_tree().change_scene_to_file(\"res://choicepaths/startchoice.tscn\")
 "
 
@@ -49,9 +90,6 @@ func _on_pressed():
 	get_tree().change_scene_to_file(\"res://choicepaths/startchoice.tscn\")
 "
 
-[sub_resource type="LabelSettings" id="LabelSettings_210xj"]
-font_size = 26
-
 [node name="CharSelectScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -61,62 +99,45 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_v1wtw")
-metadata/_edit_use_anchors_ = true
+script = SubResource("GDScript_gdjmt")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
-texture_filter = 1
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 163.0
-offset_top = -559.0
-offset_right = -859.0
-offset_bottom = -432.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = SubResource("Theme_6dt43")
-texture = ExtResource("2_gn7en")
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -48.0
-offset_right = 32.0
-offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.10204, 1.10204)
+texture = ExtResource("1_fklqi")
 
-[node name="char1" parent="NinePatchRect" instance=ExtResource("2_2iuwq")]
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 36.0
+grow_horizontal = 2
+text = "Choose Your Survivor"
+label_settings = SubResource("LabelSettings_210xj")
+horizontal_alignment = 1
+
+[node name="char1" parent="." instance=ExtResource("2_2iuwq")]
 layout_mode = 2
-offset_left = 9.0
-offset_top = 11.0
-offset_right = 121.0
-offset_bottom = 123.0
+offset_left = 172.0
+offset_top = 100.0
+offset_right = 284.0
+offset_bottom = 212.0
 texture_normal = ExtResource("4_q44od")
 texture_pressed = ExtResource("4_q44od")
 stretch_mode = 0
-playerClass = ""
 
-[node name="Label" type="Label" parent="NinePatchRect/char1"]
+[node name="Label" type="Label" parent="char1"]
 layout_mode = 0
 offset_top = -48.5
 offset_right = 62.0
 offset_bottom = -25.5
 text = "Peasant"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/char1"]
+[node name="RichTextLabel" type="RichTextLabel" parent="char1"]
 layout_mode = 0
 offset_left = -38.0
 offset_top = 116.0
@@ -128,59 +149,54 @@ Cohesive: Suffer less losses in combat
 Inexperienced: Slightly lower damage in combat
 Relateable: Large boost to morale"
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="."]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 390.0
-offset_top = -559.0
-offset_right = -632.0
-offset_bottom = -432.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = SubResource("Theme_6dt43")
-texture = ExtResource("2_gn7en")
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect2"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -48.0
-offset_right = 32.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="char1" parent="NinePatchRect2" instance=ExtResource("2_2iuwq")]
+[node name="char2" parent="." instance=ExtResource("2_2iuwq")]
 layout_mode = 2
-offset_left = 8.0
-offset_top = 11.0
-offset_right = 121.0
-offset_bottom = 124.0
+offset_left = 632.0
+offset_top = 105.0
+offset_right = 740.0
+offset_bottom = 213.0
+texture_normal = ExtResource("6_hnwi0")
+texture_pressed = ExtResource("6_hnwi0")
+stretch_mode = 0
+script = SubResource("GDScript_akw3w")
+
+[node name="Label" type="Label" parent="char2"]
+layout_mode = 0
+offset_top = -48.5
+offset_right = 62.0
+offset_bottom = -25.5
+text = "Knight"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="char2"]
+layout_mode = 0
+offset_left = -47.0
+offset_top = 114.0
+offset_right = 162.0
+offset_bottom = 488.0
+text = "A student knight who happened to be visiting the village. Chosen as leader for his noble status
+Inexperienced: Caravan starts off with higher losses in combat and lower damage
+Well Read: The knight quickly adjusts theory to reality, learning and improving in combat stats rapidly
+Noble: Better trade and diplomacy. Bonus to morale"
+
+[node name="char3" parent="." instance=ExtResource("2_2iuwq")]
+layout_mode = 2
+offset_left = 398.0
+offset_top = 100.0
+offset_right = 511.0
+offset_bottom = 213.0
 texture_normal = ExtResource("5_37d8f")
 texture_pressed = ExtResource("5_37d8f")
 stretch_mode = 0
 script = SubResource("GDScript_rkqk2")
-playerClass = ""
 
-[node name="Label" type="Label" parent="NinePatchRect2/char1"]
+[node name="Label" type="Label" parent="char3"]
 layout_mode = 0
 offset_top = -48.5
 offset_right = 62.0
 offset_bottom = -25.5
 text = "Poacher"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect2/char1"]
+[node name="RichTextLabel" type="RichTextLabel" parent="char3"]
 layout_mode = 0
 offset_left = -41.0
 offset_top = 119.0
@@ -193,122 +209,25 @@ Evasive: Takes lower losses in combat due to her stealthy tactics
 Socially Inept: Bad with morale
  "
 
-[node name="NinePatchRect3" type="NinePatchRect" parent="."]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 615.0
-offset_top = -559.0
-offset_right = -407.0
-offset_bottom = -432.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = SubResource("Theme_6dt43")
-texture = ExtResource("2_gn7en")
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="char1" parent="NinePatchRect3" instance=ExtResource("2_2iuwq")]
+[node name="char4" parent="." instance=ExtResource("2_2iuwq")]
 layout_mode = 2
-offset_left = 17.0
-offset_top = 16.0
-offset_right = 125.0
-offset_bottom = 124.0
-texture_normal = ExtResource("6_hnwi0")
-texture_pressed = ExtResource("6_hnwi0")
-stretch_mode = 0
-script = SubResource("GDScript_akw3w")
-playerClass = ""
-
-[node name="Label" type="Label" parent="NinePatchRect3/char1"]
-layout_mode = 0
-offset_top = -48.5
-offset_right = 62.0
-offset_bottom = -25.5
-text = "Knight"
-
-[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect3/char1"]
-layout_mode = 0
-offset_left = -47.0
-offset_top = 114.0
-offset_right = 162.0
-offset_bottom = 488.0
-text = "A student knight who happened to be visiting the village. Chosen as leader for his noble status
-Inexperienced: Caravan starts off with higher losses in combat and lower damage
-Well Read: The knight quickly adjusts theory to reality, learning and improving in combat stats rapidly
-Noble: Better trade and diplomacy. Bonus to morale"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect3"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -49.5
-offset_right = 16.0
-offset_bottom = 46.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="NinePatchRect4" type="NinePatchRect" parent="."]
-texture_filter = 1
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 833.0
-offset_top = -559.0
-offset_right = -189.0
-offset_bottom = -432.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 6
-theme = SubResource("Theme_6dt43")
-texture = ExtResource("2_gn7en")
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect4"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -32.0
-offset_top = -48.0
-offset_right = 32.0
-offset_bottom = 48.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="char1" parent="NinePatchRect4" instance=ExtResource("2_2iuwq")]
-layout_mode = 2
-offset_left = 12.0
-offset_top = 9.0
-offset_right = 126.0
-offset_bottom = 123.0
+offset_left = 845.0
+offset_top = 98.0
+offset_right = 959.0
+offset_bottom = 212.0
 texture_normal = ExtResource("7_el0pm")
 texture_pressed = ExtResource("7_el0pm")
 stretch_mode = 0
 script = SubResource("GDScript_ssqrr")
-playerClass = ""
 
-[node name="Label" type="Label" parent="NinePatchRect4/char1"]
+[node name="Label" type="Label" parent="char4"]
 layout_mode = 0
 offset_top = -48.5
 offset_right = 62.0
 offset_bottom = -25.5
 text = "Viking"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect4/char1"]
+[node name="RichTextLabel" type="RichTextLabel" parent="char4"]
 layout_mode = 0
 offset_left = -51.0
 offset_top = 121.0
@@ -319,20 +238,3 @@ Berserker: Higher losses in combat
 Survival of the Fittest: Those who survive combat rapidly improve
 Meathead: terrible diplomacy and barter
 Cruel: Villainous choices do not lower morale"
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 36.0
-grow_horizontal = 2
-text = "Choose Your Survivor"
-label_settings = SubResource("LabelSettings_210xj")
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-offset_left = 134.0
-offset_right = 134.0
-size_flags_horizontal = 4
-size_flags_vertical = 4

@@ -83,3 +83,7 @@ func _on_handgonne_pressed() -> void:
 		PlayerData.gold-=7
 		%goldcount.text = "Gold:" + str(PlayerData.gold)
 		getinv()
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://caravanscreen/caravan.tscn")

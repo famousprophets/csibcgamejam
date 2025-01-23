@@ -1,10 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://b50e8aajdnglj"]
+[gd_scene load_steps=3 format=3 uid="uid://c6bapxkl4fsv"]
 
-[ext_resource type="Script" path="res://battle_handler.gd" id="1_gbihp"]
 [ext_resource type="Texture2D" uid="uid://w8mluk2ktesi" path="res://icon.svg" id="2_d5x8q"]
 
+[sub_resource type="GDScript" id="GDScript_1uojw"]
+script/source = "
+extends Node2D
+
+class_name TurnQueue
+
+
+var active_character
+
+func initialize():
+	active_character = get_child(0)
+	
+func play_turn():
+	await active_character.play_turn(); \"completed\"
+	var new_index : int = (active_character.get_index() + 1) % get_child_count()
+	active_character = get_child(new_index)
+"
+
 [node name="BattleHandler" type="Node2D"]
-script = ExtResource("1_gbihp")
+script = SubResource("GDScript_1uojw")
 
 [node name="Icon" type="Sprite2D" parent="."]
 position = Vector2(68, 66)

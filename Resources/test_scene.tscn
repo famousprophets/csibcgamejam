@@ -1,12 +1,76 @@
-[gd_scene load_steps=11 format=3 uid="uid://bvbi6oktbuci2"]
+[gd_scene load_steps=12 format=3 uid="uid://bvbi6oktbuci2"]
 
-[ext_resource type="Script" path="res://Resources/Manager.gd" id="1_3kuxy"]
-[ext_resource type="PackedScene" uid="uid://dm51f6ndh3dol" path="res://scenes/slot.tscn" id="1_d6sdr"]
+[ext_resource type="PackedScene" uid="uid://cxy6cifhu37vb" path="res://scenes/slot.tscn" id="1_d6sdr"]
 [ext_resource type="Script" path="res://Resources/inventory.gd" id="1_h2ubg"]
-[ext_resource type="Script" path="res://Resources/shop.gd" id="3_elqfa"]
 [ext_resource type="Script" path="res://item.gd" id="4_2ht0i"]
-[ext_resource type="Resource" uid="uid://dn36w1amy3fr2" path="res://Resources/new_resource.tres" id="5_bc4cf"]
+[ext_resource type="Texture2D" uid="uid://w8mluk2ktesi" path="res://icon.svg" id="4_4j2xh"]
 [ext_resource type="Texture2D" uid="uid://dhdcnhp6b7qru" path="res://images/mercant.png" id="7_nlryt"]
+
+[sub_resource type="GDScript" id="GDScript_hb244"]
+script/source = "extends Panel
+
+enum MODE {
+	INVENTORY,
+	SHOP
+}
+
+@export var currency : int = 0:
+	set(value):
+		currency = value
+		
+		%Balance.text = str(value)
+
+func _ready():
+	currency = 100
+
+func _input(event):
+	if event.is_action_pressed(\"Inventory\"):
+		open_mode(MODE.INVENTORY)
+	
+	if event.is_action_pressed(\"Interact\"):
+		open_mode(MODE.SHOP)
+
+
+func open_mode(mode):
+	visible = not visible
+	
+	match mode: 
+		MODE.INVENTORY:
+			%Shop.visible = false
+			if visible:
+				print(\"Inventory mode.\")
+			
+		MODE.SHOP:
+			%Shop.visible = true
+			if visible:
+				print(\"Shop mode.\")
+"
+
+[sub_resource type="GDScript" id="GDScript_rhy3l"]
+script/source = "extends Inventory
+
+#region Testing
+@export var items: Array[Item]
+
+func _ready():
+	load_items(items)
+#endregion
+
+func load_items(items):
+	reset()
+	for item in items:
+		add_item(item)
+
+func reset():
+	for slot in get_children():
+		slot.item = null
+"
+
+[sub_resource type="Resource" id="Resource_qyyuq"]
+script = ExtResource("4_2ht0i")
+icon = ExtResource("4_4j2xh")
+name = ""
+cost = 50.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_v5x2l"]
 line_spacing = 3.005
@@ -28,7 +92,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_3kuxy")
+script = SubResource("GDScript_hb244")
 
 [node name="Inventory" type="GridContainer" parent="UI/Manager"]
 unique_name_in_owner = true
@@ -125,8 +189,8 @@ offset_right = 698.0
 offset_bottom = 295.0
 scale = Vector2(2.36684, 2.36684)
 columns = 3
-script = ExtResource("3_elqfa")
-items = Array[ExtResource("4_2ht0i")]([ExtResource("5_bc4cf"), ExtResource("5_bc4cf"), ExtResource("5_bc4cf")])
+script = SubResource("GDScript_rhy3l")
+items = Array[ExtResource("4_2ht0i")]([SubResource("Resource_qyyuq"), SubResource("Resource_qyyuq"), SubResource("Resource_qyyuq")])
 
 [node name="Slot" parent="UI/Manager/Shop" instance=ExtResource("1_d6sdr")]
 layout_mode = 2

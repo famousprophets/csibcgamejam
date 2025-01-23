@@ -1,8 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://o73lep73xow0"]
+[gd_scene load_steps=6 format=3 uid="uid://cnxauygx2kfo6"]
 
-[ext_resource type="Script" path="res://char.gd" id="1_jbt6h"]
 [ext_resource type="Texture2D" uid="uid://bbu5jkuejm00a" path="res://images/placeholders/World01_007_Pirate.png" id="1_lnccx"]
 [ext_resource type="Texture2D" uid="uid://e1wje77pcgii" path="res://images/guisprite.png" id="3_s5ojy"]
+
+[sub_resource type="GDScript" id="GDScript_bimtj"]
+script/source = "extends CharacterBody2D
+
+@onready var _focus = $focus
+@onready var progress_bar = $ProgressBar
+@onready var animation_player = $AnimationPlayer
+
+@export var MAX_HEALTH: float = 7
+	
+var health: float = 7:
+	set(value):
+		health = value
+		_update_progress_bar()
+		_play_animation()
+
+func _play_animation():
+	animation_player.play(\"hurt\")
+	
+func _update_progress_bar():
+	progress_bar.value = (health/MAX_HEALTH) * 100
+	
+func focus():
+	_focus.show()
+
+func unfocus():
+	_focus.hide()
+	
+func take_damage(value):
+	health -= value
+"
 
 [sub_resource type="Animation" id="Animation_si8kl"]
 resource_name = "hurt"
@@ -13,7 +43,7 @@ _data = {
 }
 
 [node name="char" type="CharacterBody2D"]
-script = ExtResource("1_jbt6h")
+script = SubResource("GDScript_bimtj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_lnccx")

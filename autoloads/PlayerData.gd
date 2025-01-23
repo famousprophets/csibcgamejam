@@ -52,11 +52,13 @@ func classassign(x):
 		charisma += 10
 		authority += 10
 		horses += 4
+		ClassTexture = load("res://battles/A_Smile_of_Betrayal.png")
+var bittered = false
 
 var hp : int = 30 #Represents the number of carvan members that are uninjured
 var max_hp : int = 30 #Represents the number of carvan members you have
 var veterans = 0 #veterans just deal as much damage as 2 regular soldiers
-var attack : int = 0 #increases or decreases attack damage by 5% overall. increase or decrease sparingly
+var attack : int = 0.01 #increases or decreases attack damage by 5% overall. increase or decrease sparingly
 var defense : int = 0 #increases or decreases rate of death for wounded soldiers by 5%. increase or decrease sparingly
 var teaching = 2 #increases chance of soldiers becoming veterans by 5%
 var levelupchance = teaching * 5
@@ -76,6 +78,9 @@ var forage = 1 #players skill in foraging food passively. increase sparingly
 var isevil = false #true if the player picks barbarian. for evil actions, evil characters shouldnt get a morale hit
 var foodgather = forage * 4
 var ambush = false
+var truedamage = hp + attack
+var healamount = 4
+
 #distance to travel to the castle is 500 miles
 
 func cantmove():
@@ -92,6 +97,15 @@ func _process(delta: float) -> void:
 		food = 0
 	if morale < 0:
 		morale = 0
+	truedamage = hp + attack
+	caravanspeed = (horses / 4) * 25
+	deathchance = 25 - (defense * 5)
+	levelupchance = teaching * 5
+	injured = max_hp - hp
+	if hp > max_hp:
+		hp = max_hp
+	if Pinventory.medicalsupplies > 0:
+		healamount = healamount + Pinventory.medicalsupplies
 
 @export var speed = 0
 @export var damage = 0

@@ -1,10 +1,29 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddnrkxq3683ub"]
+[gd_scene load_steps=3 format=3 uid="uid://bi7ep3ppedpip"]
 
-[ext_resource type="Script" path="res://character_1.gd" id="1_hcp6k"]
 [ext_resource type="Texture2D" uid="uid://bbu5jkuejm00a" path="res://images/placeholders/World01_007_Pirate.png" id="2_8t8mb"]
 
+[sub_resource type="GDScript" id="GDScript_ielq6"]
+script/source = "extends Panel
+
+@export var characterPath: String 
+@export var characterTexture: CompressedTexture2D
+
+func _ready():
+	$TextureRect.texture = characterTexture
+
+func set_selected(boolean):
+	var stylebox = get_theme_stylebox(\"panel\").duplicate()
+	
+	if boolean:
+		stylebox.border_color = Color(1,1,1)
+	else:
+		stylebox.border_color = Color(0,0,0)
+	
+	add_theme_stylebox_override(\"panel\",stylebox)
+"
+
 [node name="Character1" type="Panel"]
-script = ExtResource("1_hcp6k")
+script = SubResource("GDScript_ielq6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0

@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://bcset1g32hkfe"]
+[gd_scene load_steps=3 format=3 uid="uid://bcset1g32hkfe"]
+
+[ext_resource type="Script" path="res://rich_text_label.gd" id="1_mxse8"]
+[ext_resource type="Script" path="res://goback.gd" id="2_5sdsc"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -25,7 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Programming: Kenji
 UI Design: Kenji
-Writing: Kenji & Kazi
+Writing: Kenji 
 Art: Kazi
 
 All music, visuals, and code in this game are made by the creators of the game. Sound effects are from freesound.org
@@ -37,3 +40,15 @@ NO GENERATIVE AI was used in the creation of this game.
 
 MIT License.
 YOU MAY NOT USE THIS GAME TO TRAIN GENERATIVE AI"
+script = ExtResource("1_mxse8")
+
+[node name="goback" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 537.0
+offset_right = 171.0
+offset_bottom = 616.0
+text = "GO BACK?"
+script = ExtResource("2_5sdsc")
+
+[connection signal="pressed" from="Panel/goback" to="Panel/goback" method="_on_pressed"]

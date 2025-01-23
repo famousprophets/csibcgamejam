@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://ml3s27plb5mx"]
 
-[ext_resource type="PackedScene" uid="uid://di231qwc36x20" path="res://combatwindowdef.tscn" id="1_ca8bd"]
+[ext_resource type="PackedScene" uid="uid://jtk151rai4mk" path="res://combatwindowdef.tscn" id="1_ca8bd"]
 [ext_resource type="Theme" uid="uid://douq2ktq61pui" path="res://defaulttheme.tres" id="1_yk3qo"]
 [ext_resource type="Texture2D" uid="uid://4k4ubkajrcwi" path="res://images/placeholders/de98243074f2bb5f7d7c43f749626c12.jpg" id="2_6fdeh"]
-[ext_resource type="PackedScene" uid="uid://ode3uns5e5dm" path="res://battleplayer.tscn" id="4_rmfut"]
-[ext_resource type="PackedScene" uid="uid://bhdqp78yo3apk" path="res://battleenemy.tscn" id="5_lui7p"]
+[ext_resource type="PackedScene" uid="uid://ct3mskg43u0xq" path="res://battleplayer.tscn" id="4_rmfut"]
+[ext_resource type="PackedScene" uid="uid://djnpvus16ffqq" path="res://battleenemy.tscn" id="5_lui7p"]
 
 [node name="Battle" type="Control"]
 layout_mode = 3

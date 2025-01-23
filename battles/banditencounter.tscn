@@ -1,0 +1,446 @@
+[gd_scene load_steps=9 format=3 uid="uid://ck5v2gseairu0"]
+
+[ext_resource type="Texture2D" uid="uid://bb2wa36qctn2v" path="res://gradient.png" id="2_1nb5x"]
+[ext_resource type="Script" path="res://enemychars.gd" id="3_ebhg2"]
+[ext_resource type="Texture2D" uid="uid://evyhnev5puyd" path="res://images/enemies/Enemy_Bandit.png" id="4_qpwwp"]
+[ext_resource type="Texture2D" uid="uid://cdjjuqa0k4ahw" path="res://images/knight.png" id="8_6l5ig"]
+[ext_resource type="AudioStream" uid="uid://du7wsgc30j2jp" path="res://Music/FermataSlowed.wav" id="9_6n8ue"]
+
+[sub_resource type="GDScript" id="GDScript_ls07c"]
+script/source = "extends Control
+var enemyalive = false
+var enemyhealth = 0
+var enemy1health = 20
+var enemy2health = 20
+var enemy3health = 20
+var enemy4health = 20
+var pdamage = 0
+var enemy1dmg = 1
+var enemy2dmg = 1
+var enemy3dmg = 1
+var enemy4dmg = 1
+var handgonneshots = Pinventory.handgonne
+var playerturns = 1
+var turnsused = 0
+var damagebonus = 0
+var saved = 0 #number of saved dead soldiers
+var wounded = 0
+var dead = 0
+# Called when the node enters the scene tree for the first time.
+func _enter_tree():
+	$BattleOverScreen.hide()
+	%Character.texture = PlayerData.ClassTexture
+	handgonneshots = Pinventory.handgonne
+	$combatflavortext.text = \"The bandits sneer and taunt you.\"
+	enemy1health = 20
+	enemy2health = 20
+	enemy3health = 20
+	enemy4health = 20
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	var turns = 2
+	if PlayerData.ambush == true:
+		turns+=1
+		PlayerData.ambush = false
+	%battlestatus.text = \"Soldiers: \" + str(PlayerData.hp) + \"\\nInjured Soldiers: \" + str(wounded)
+	if enemy1health <= 0:
+		$CanvasLayer/HBoxContainer/Bandit.hide()
+	if enemy2health <= 0:
+		$CanvasLayer/HBoxContainer/Bandit2.hide()
+	if enemy3health <= 0:
+		$CanvasLayer/HBoxContainer/Bandit3.hide()
+	if enemy4health <= 0:
+		$CanvasLayer/HBoxContainer/Bandit4.hide()
+	if enemy1health <= 0 && enemy2health <= 0 && enemy3health <= 0 && enemy4health <= 0:
+		battlewon()
+	if PlayerData.hp <= 0:
+		get_tree().change_scene_to_file(\"res://game_over.tscn\")
+	if $AudioStreamPlayer2D.playing == false:
+		$AudioStreamPlayer2D.play()
+
+func battler():
+	while enemyalive == true:
+		if enemy1health <= 0 && enemy2health <= 0 && enemy3health <= 0 && enemy4health <=0:
+			enemyalive == false
+			break
+		else:
+			pass
+		
+
+func enemyturns():
+	var totaldamage = 0
+	await get_tree().create_timer(1).timeout
+	if enemy1health > 0:
+		totaldamage += enemy1dmg
+	if enemy2health > 0:
+		totaldamage += enemy2dmg
+	if enemy3health > 0:
+		totaldamage += enemy3dmg
+	if enemy4health > 0:
+		totaldamage += enemy4dmg
+	$combatflavortext.text = \"Your enemies clash with your soldiers, wounding \" + str(totaldamage) + \" of them.\"
+	PlayerData.hp -= totaldamage
+	wounded += totaldamage
+	turnsused = 0
+
+func _on_attack_pressed():
+	if turnsused < playerturns:
+		pdamage = PlayerData.truedamage + damagebonus
+		if enemy1health > 0:
+			enemy1health -= pdamage
+			turnsused +=1
+		elif enemy2health >0:
+			enemy2health -= pdamage
+			turnsused +=1
+		elif enemy3health >0:
+			enemy3health -= pdamage
+			turnsused +=1
+		elif enemy4health > 0:
+			enemy4health -= pdamage
+			turnsused +=1
+		else:
+			pass
+		$combatflavortext.text = \"Your soldiers charge the nearest enemy, dealing \" + str(pdamage) + \" damage\"
+		if turnsused == playerturns:
+			enemyturns()
+	
+	
+	
+#func enemyreveal(x):
+	#var attack
+	#var health
+	#if x == 0:
+		#attack = 1
+		#health = 20
+	#elif x == 1:
+		#attack = 4
+		#health = 90
+	#elif x == 2:
+		#attack = 3
+		#health = 15
+		#dodge = 4
+	#elif x == 3:
+		#attack = 2
+		#health = 50
+	#elif x == 4:
+		#health = 0
+		#attack = 0
+	#
+	#while health >= 0:
+
+#0 for bandit 1 wendigo 2 strider 3 worm 4 for nothing
+var attack
+var health
+var dodge
+var bandits
+var wendigos
+var striders
+var worms
+
+
+func enemyfetch(enemy1,enemy2,enemy3,enemy4):
+	var array = [enemy1, enemy2, enemy3, enemy4]
+	var count = 1
+	for item in array:
+		pass
+	
+
+
+func _on_item_pressed():
+	$CanvasLayer/VBoxContainer/Panel/Panel.show()
+
+func _on_flee_pressed():
+	$combatflavortext.text = \"Theres nowhere to flee to.\"
+	pass # Replace with function body.
+	
+
+func _on_bandages_pressed():
+	if Pinventory.bandage > 0:
+		Pinventory.bandage -= 1
+		saved += 1
+		$combatflavortext.text = \"A medic applies a bandage to a soldier.\"
+	else:
+		$combatflavortext.text = \"Not enough item charges...\"
+
+func _on_lantern_pressed():
+	if Pinventory.lantern > 0:
+		damagebonus += 5
+		Pinventory.lantern -= 1
+		$combatflavortext.text = \"The lantern burns bright, making it easier to hit your enemy.\"
+	else:
+		$combatflavortext.text = \"Not enough item charges...\"
+
+func _on_oilflask_pressed():
+	if Pinventory.oilflask > 0:
+		enemy1health -=20
+		enemy2health -=20
+		enemy3health -=20
+		enemy4health -=20
+		Pinventory.oilflask -= 1
+		$combatflavortext.text = \"The flask explodes into a wall of flame as your enemies recoil.\"
+	else:
+		$combatflavortext.text = \"Not enough item charges...\"
+
+
+func _on_handgonne_pressed():
+	if handgonneshots > 0:
+		enemy1health -=20
+		enemy2health -=20
+		enemy3health -=20
+		enemy4health -=20
+		handgonneshots -= 1
+		$combatflavortext.text = \"With a thundering boom, you spray shrapnel shards into your enemies.\"
+		
+	else:
+		$combatflavortext.text = \"Not enough item charges...\"
+func _on_back_pressed():
+	$CanvasLayer/VBoxContainer/Panel/Panel.hide()
+
+func battlewon():
+	dead = (wounded / 4) - saved
+	$BattleOverScreen.show()
+	%BattleGains.text = \"Of your \" + str(wounded) + \" wounded soldiers, \" + str(dead) + \" have died.\\n+15 Gold\"
+	PlayerData.gold+=15
+	PlayerData.max_hp-=dead
+	$CanvasLayer/VBoxContainer.hide()
+	$BattleOverScreen/ExitButton.show()
+
+func _on_exit_button_pressed():
+	get_tree().change_scene_to_file(\"res://caravanscreen/caravan.tscn\")
+"
+
+[sub_resource type="Theme" id="Theme_0tcba"]
+VBoxContainer/constants/separation = 4
+
+[sub_resource type="Theme" id="Theme_x2nvk"]
+
+[node name="neobattletemplate" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_ls07c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1nb5x")
+expand_mode = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1152.0
+offset_top = -251.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_0tcba")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_x2nvk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 742.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+
+[node name="attack" type="Button" parent="CanvasLayer/VBoxContainer/Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Attack"
+
+[node name="item" type="Button" parent="CanvasLayer/VBoxContainer/Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Item"
+
+[node name="flee" type="Button" parent="CanvasLayer/VBoxContainer/Panel/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Flee"
+
+[node name="Panel" type="Panel" parent="CanvasLayer/VBoxContainer/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -248.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/Panel/Panel"]
+layout_mode = 1
+offset_right = 191.0
+offset_bottom = 74.0
+text = "Back"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/Panel/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -576.0
+offset_bottom = 248.0
+grow_horizontal = 0
+
+[node name="bandages" type="Button" parent="CanvasLayer/VBoxContainer/Panel/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Bandages"
+
+[node name="lantern" type="Button" parent="CanvasLayer/VBoxContainer/Panel/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Lantern"
+
+[node name="oilflask" type="Button" parent="CanvasLayer/VBoxContainer/Panel/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Oil Flask"
+
+[node name="handgonne" type="Button" parent="CanvasLayer/VBoxContainer/Panel/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Handgonne"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 61.0
+offset_top = 56.0
+offset_right = 1077.0
+offset_bottom = 307.0
+script = ExtResource("3_ebhg2")
+
+[node name="Bandit" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_direction = 2
+layout_mode = 2
+texture = ExtResource("4_qpwwp")
+expand_mode = 3
+
+[node name="Bandit2" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_direction = 2
+layout_mode = 2
+texture = ExtResource("4_qpwwp")
+expand_mode = 3
+
+[node name="Bandit3" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_direction = 2
+layout_mode = 2
+texture = ExtResource("4_qpwwp")
+expand_mode = 3
+
+[node name="Bandit4" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 120)
+layout_direction = 2
+layout_mode = 2
+texture = ExtResource("4_qpwwp")
+expand_mode = 3
+
+[node name="Character" type="TextureRect" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -230.0
+offset_right = 247.0
+offset_bottom = -23.0
+grow_vertical = 0
+texture = ExtResource("8_6l5ig")
+
+[node name="BattleOverScreen" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BattleGains" type="RichTextLabel" parent="BattleOverScreen"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -267.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ExitButton" type="Button" parent="BattleOverScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -98.5
+offset_top = -197.0
+offset_right = 98.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Battle Complete"
+
+[node name="battlestatus" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 247.0
+offset_top = 418.0
+offset_right = 462.0
+offset_bottom = 625.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="HBoxContainer"]
+
+[node name="enemy1" type="Sprite2D" parent="HBoxContainer/CharacterBody2D"]
+unique_name_in_owner = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_6n8ue")
+
+[node name="combatflavortext" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 324.0
+offset_right = 792.0
+offset_bottom = 394.0
+text = "You spray the enemies with a blast of shrapnel!"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/VBoxContainer/attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/VBoxContainer/item" to="." method="_on_item_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/VBoxContainer/flee" to="." method="_on_flee_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/Panel/Button" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/Panel/VBoxContainer/bandages" to="." method="_on_bandages_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/Panel/VBoxContainer/lantern" to="." method="_on_lantern_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/Panel/VBoxContainer/oilflask" to="." method="_on_oilflask_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/Panel/VBoxContainer/handgonne" to="." method="_on_handgonne_pressed"]
+[connection signal="pressed" from="BattleOverScreen/ExitButton" to="." method="_on_exit_button_pressed"]
