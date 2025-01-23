@@ -57,7 +57,7 @@ func _on_exit_button_pressed(): #this just takes you back to the caravan screen.
 	#and describe in a comment or over discord what enemies you want to appear in that fight scene z
 "
 
-[node name="ChoiceSceneTemplate" type="Control"]
+[node name="ChoiceSceneTemplate2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,13 +106,11 @@ autowrap_mode = 2
 [node name="Button3" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "the glob"
 autowrap_mode = 2
 
 [node name="Button4" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "the glob"
 autowrap_mode = 2
 
 [node name="ExitButton" type="Button" parent="Panel"]

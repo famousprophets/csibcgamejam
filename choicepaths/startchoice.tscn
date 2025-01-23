@@ -131,13 +131,11 @@ autowrap_mode = 2
 [node name="Button3" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "the glob"
 autowrap_mode = 2
 
 [node name="Button4" type="Button" parent="Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "the glob"
 autowrap_mode = 2
 
 [node name="ExitButton" type="Button" parent="Panel"]

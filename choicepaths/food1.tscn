@@ -41,7 +41,7 @@ func _on_exit_button_pressed(): #this just takes you back to the caravan screen.
 	#and describe in a comment or over discord what enemies you want to appear in that fight scene 
 "
 
-[node name="ChoiceSceneTemplate" type="Control"]
+[node name="ChoiceSceneTemplate4" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

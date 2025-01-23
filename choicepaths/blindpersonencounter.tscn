@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://choicepaths/choicesesss/BlindPersonEncounter.gd" id="1_taiot"]
 
-[node name="ChoiceSceneTemplate" type="Control"]
+[node name="ChoiceSceneTemplate3" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

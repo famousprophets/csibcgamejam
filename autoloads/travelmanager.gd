@@ -1,6 +1,6 @@
 extends Node
 
-var locationstraveled = 0
+var locationstraveled :int = 0
 var disttravel = 0
 var hordedist = -35
 var badluck = 0
@@ -55,7 +55,7 @@ func findnextlocation():
 	else:
 		randevent()
 func randevent():
-	var ranloc = int(rng.randf_range(1,21))
+	var ranloc = int(rng.randf_range(1,22))
 	if ranloc == 1:
 		get_tree().change_scene_to_file("res://choicepaths/blindpersonencounter.tscn")
 	if ranloc == 2:
@@ -98,3 +98,5 @@ func randevent():
 		get_tree().change_scene_to_file("res://choicepaths/wendigoencounter1.tscn")
 	if ranloc == 21:
 		get_tree().change_scene_to_file("res://choicepaths/woundedmaninteraction.tscn")
+	if ranloc == 22:
+		get_tree().change_scene_to_file("res://choicepaths/wolffind.tscn")

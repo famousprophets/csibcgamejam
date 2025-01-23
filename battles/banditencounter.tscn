@@ -206,7 +206,7 @@ VBoxContainer/constants/separation = 4
 
 [sub_resource type="Theme" id="Theme_x2nvk"]
 
-[node name="neobattletemplate" type="Control"]
+[node name="neobattletemplate2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

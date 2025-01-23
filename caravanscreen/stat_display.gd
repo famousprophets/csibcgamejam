@@ -15,7 +15,7 @@ func _process(_delta):
 	else:
 		hordespeed = "Same as yours."
 	var red = Color(1.0,0.0,0.0,1.0)
-	%"Stat Display".text = "Uninjured Soldiers:" + str(hp) + "\nInjured Soldiers: " + str(inj) + "\nGold: " + str(gold) + "\nFood Supply: " + str(food) + "\n Morale: " + str(morale) + " / 10\nCaravan Speed: Roughly" + str(cspeed) + " miles per day\nHorde Speed: " + hordespeed
+	%"Stat Display".text = "Uninjured Soldiers:" + str(hp) + "\nInjured Soldiers: " + str(inj) + "\nGold: " + str(gold) + "\nFood Supply: " + str(food) + "\n Morale: " + str(morale) + " / 10\nCaravan Speed: Roughly" + str(cspeed) + " miles per day\nHorde Speed: " + hordespeed + "\nDays to castle: " + str(17-Travelmanager.locationstraveled)
 	if Travelmanager.disttravel - Travelmanager.hordedist <= 25:
 		%hordelabel.text = "The horde is right behind you!!"
 		%hordelabel.label_settings.font_color = red
