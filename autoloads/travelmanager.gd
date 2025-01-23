@@ -2,16 +2,14 @@ extends Node
 
 var locationstraveled = 0
 var disttravel = 0
-var hordedist = -35
+var hordedist = 0
 var badluck = 0
 var timescaught = 0
 var difficulty = 0 #goes up as the player travels. mainly to keep track of roughly what our stats should look like
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-func _process(delta: float) -> void:
-		
-	
+
 
 # at set amounts of locations traveled, caravan encounters a canon Always present location.
 var rng = RandomNumberGenerator.new()

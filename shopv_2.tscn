@@ -34,35 +34,35 @@ grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("1_ij3hh")
 
-[node name="oflask" type="Button" parent="Panel/Shop"]
+[node name="Button" type="Button" parent="Panel/Shop"]
 layout_mode = 2
 text = "Oil Flask: 2 gold"
 
-[node name="bandage" type="Button" parent="Panel/Shop"]
+[node name="Button2" type="Button" parent="Panel/Shop"]
 layout_mode = 2
 text = "Bandage: 1 gold"
 
-[node name="horsebitters" type="Button" parent="Panel/Shop"]
+[node name="Button3" type="Button" parent="Panel/Shop"]
 layout_mode = 2
 text = "Horse Bitters: 3 gold"
 
-[node name="entertainment" type="Button" parent="Panel/Shop"]
+[node name="Button8" type="Button" parent="Panel/Shop"]
 layout_mode = 2
 text = "Assorted Entertainment: 2 gold"
 
-[node name="lantern" type="Button" parent="Panel/Shop"]
+[node name="Button9" type="Button" parent="Panel/Shop"]
 layout_mode = 2
 text = "Lantern: 1 gold"
 
-[node name="medsupplies" type="Button" parent="Panel/Shop"]
+[node name="Button4" type="Button" parent="Panel/Shop"]
 layout_mode = 2
 text = "Medical Supplies: 6 gold"
 
-[node name="warbook" type="Button" parent="Panel/Shop"]
+[node name="Button5" type="Button" parent="Panel/Shop"]
 layout_mode = 2
 text = "Swordmanship Manual: 5 gold"
 
-[node name="handgonne" type="Button" parent="Panel/Shop"]
+[node name="Button6" type="Button" parent="Panel/Shop"]
 layout_mode = 2
 text = "Handgonne: 7 gold"
 
@@ -78,7 +78,6 @@ offset_bottom = -30.0
 grow_vertical = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Panel/Inventory"]
-unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("2_n0g4x")
@@ -109,20 +108,3 @@ offset_bottom = 205.0
 grow_horizontal = 0
 text = "You wouldn't believe how great this apocalypse stuff is for profit margins."
 script = ExtResource("3_ye2qt")
-
-[node name="goldcount" type="Label" parent="Panel"]
-unique_name_in_owner = true
-layout_mode = 0
-offset_left = 38.0
-offset_top = 30.0
-offset_right = 214.0
-offset_bottom = 131.0
-
-[connection signal="pressed" from="Panel/Shop/oflask" to="Panel/Shop" method="_on_oflask_pressed"]
-[connection signal="pressed" from="Panel/Shop/bandage" to="Panel/Shop" method="_on_bandage_pressed"]
-[connection signal="pressed" from="Panel/Shop/horsebitters" to="Panel/Shop" method="_on_horsebitters_pressed"]
-[connection signal="pressed" from="Panel/Shop/entertainment" to="Panel/Shop" method="_on_entertainment_pressed"]
-[connection signal="pressed" from="Panel/Shop/lantern" to="Panel/Shop" method="_on_lantern_pressed"]
-[connection signal="pressed" from="Panel/Shop/medsupplies" to="Panel/Shop" method="_on_medsupplies_pressed"]
-[connection signal="pressed" from="Panel/Shop/warbook" to="Panel/Shop" method="_on_warbook_pressed"]
-[connection signal="pressed" from="Panel/Shop/handgonne" to="Panel/Shop" method="_on_handgonne_pressed"]

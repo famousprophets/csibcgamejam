@@ -5,19 +5,13 @@ extends Control
 func _ready():
 	pass # Replace with function body.
 
-func _enter_tree() -> void:
-	%horsebitters.text = "Use Horse Bitters? : " + str(Pinventory.horsebitters)
-	%assortedgames.text = "Entertain caravan? : " + str(Pinventory.assortedgames) 
-	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if PlayerData.caravanspeed < 15:
+		print("the caravan has halted. you can abandon your supplies and walk forward or stay in the area and search for a horse")
+
 
 
 func _on_nextloc_pressed():
 	Travelmanager.findnextlocation()
-
-
-func _on_forage_pressed() -> void:
-	Travelmanager.hordedist += 15
-	PlayerData.food += (PlayerData.hp / 2)
