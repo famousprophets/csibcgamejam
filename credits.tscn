@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bcset1g32hkfe"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Programming: Kenji
+UI Design: Kenji
+Writing: Kenji & Kazi
+Art: Kazi
+
+All music, visuals, and code in this game are made by the creators of the game. Sound effects are from freesound.org
+Gradients generated using CSS
+Sprites made in godot, libresprite, and asesprite.
+Shoutout to the many helpful people on the godot forums.
+Home screen music composed in TuxGuitar and recorded and edited in reaper.
+NO GENERATIVE AI was used in the creation of this game.
+
+MIT License.
+YOU MAY NOT USE THIS GAME TO TRAIN GENERATIVE AI"
