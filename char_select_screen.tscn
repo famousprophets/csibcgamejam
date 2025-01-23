@@ -107,6 +107,7 @@ offset_bottom = 123.0
 texture_normal = ExtResource("4_q44od")
 texture_pressed = ExtResource("4_q44od")
 stretch_mode = 0
+playerClass = ""
 
 [node name="Label" type="Label" parent="NinePatchRect/char1"]
 layout_mode = 0
@@ -170,6 +171,7 @@ texture_normal = ExtResource("5_37d8f")
 texture_pressed = ExtResource("5_37d8f")
 stretch_mode = 0
 script = SubResource("GDScript_rkqk2")
+playerClass = ""
 
 [node name="Label" type="Label" parent="NinePatchRect2/char1"]
 layout_mode = 0
@@ -220,6 +222,7 @@ texture_normal = ExtResource("6_hnwi0")
 texture_pressed = ExtResource("6_hnwi0")
 stretch_mode = 0
 script = SubResource("GDScript_akw3w")
+playerClass = ""
 
 [node name="Label" type="Label" parent="NinePatchRect3/char1"]
 layout_mode = 0
@@ -296,6 +299,7 @@ texture_normal = ExtResource("7_el0pm")
 texture_pressed = ExtResource("7_el0pm")
 stretch_mode = 0
 script = SubResource("GDScript_ssqrr")
+playerClass = ""
 
 [node name="Label" type="Label" parent="NinePatchRect4/char1"]
 layout_mode = 0

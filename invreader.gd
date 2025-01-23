@@ -3,7 +3,9 @@ extends RichTextLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$".".text = "Bandages: " + str(Pinventory.bandage) + "\nLanterns: " + str(Pinventory.lantern) + "\nOil Flasks: " + str(Pinventory.oilflask)
+	getinv()
+func getinv():
+	$".".text ="\nOil Flasks: " + str(Pinventory.oilflask) + "\nBandages: " + str(Pinventory.bandage) + "\nHorse Bitters: " + str(Pinventory.horsebitters) + "\nAssorted Entertainment: " + str(Pinventory.assortedgames) + "\nLanterns: " + str(Pinventory.lantern) + "\nMedical Supplies: " + str(Pinventory.medicalsupplies) + "\nTraining Manuals: " + str(Pinventory.warbook) + "\nHandgonnes: " + str(Pinventory.handgonne)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
