@@ -37,11 +37,9 @@ func _on_button_pressed():
 
 func _on_button_2_pressed():
 	choicemade()
-	if PlayerData.bandage >= 1:
-		$Panel/RichTextLabel.text = "You give him a bandage, in exchange he gives you some horsebitters" #write the outcome of the scenario here
-		PlayerData.food -= 1 
-	else: 
-		$Panel/RichTextLabel.text = "You lack the sufficient materials for trade"
+
+	$Panel/RichTextLabel.text = "You give him a bandage, in exchange he gives you some horsebitters" #write the outcome of the scenario here
+	Pinventory.horsebitters+=1
 
 
 

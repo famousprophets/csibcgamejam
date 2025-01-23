@@ -177,7 +177,6 @@ func battlewon():
 	dead = (wounded / 4) - saved
 	$BattleOverScreen.show()
 	%BattleGains.text = \"Of your \" + str(wounded) + \" wounded soldiers, \" + str(dead) + \" have died.\\n\"
-	PlayerData.max_hp-=dead
 	$CanvasLayer/VBoxContainer.hide()
 	$ExitButton.show()
 

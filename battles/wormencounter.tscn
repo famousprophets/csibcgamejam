@@ -1,24 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://ck5v2gseairu0"]
+[gd_scene load_steps=9 format=3 uid="uid://cwbwog74gnpwm"]
 
-[ext_resource type="Texture2D" uid="uid://bb2wa36qctn2v" path="res://gradient.png" id="2_1nb5x"]
-[ext_resource type="Script" path="res://enemychars.gd" id="3_ebhg2"]
-[ext_resource type="Texture2D" uid="uid://evyhnev5puyd" path="res://images/enemies/Enemy_Bandit.png" id="4_qpwwp"]
-[ext_resource type="Texture2D" uid="uid://cdjjuqa0k4ahw" path="res://images/knight.png" id="8_6l5ig"]
-[ext_resource type="AudioStream" uid="uid://du7wsgc30j2jp" path="res://Music/FermataSlowed.wav" id="9_6n8ue"]
+[ext_resource type="Texture2D" uid="uid://bb2wa36qctn2v" path="res://gradient.png" id="1_mn10d"]
+[ext_resource type="Script" path="res://enemychars.gd" id="2_t7l45"]
+[ext_resource type="Texture2D" uid="uid://sfnxnhqxg18y" path="res://images/enemies/Enemy_TriloWorm.png" id="3_fyfp5"]
+[ext_resource type="Texture2D" uid="uid://cdjjuqa0k4ahw" path="res://images/knight.png" id="4_5x238"]
+[ext_resource type="AudioStream" uid="uid://du7wsgc30j2jp" path="res://Music/FermataSlowed.wav" id="5_l38iu"]
 
-[sub_resource type="GDScript" id="GDScript_ls07c"]
+[sub_resource type="GDScript" id="GDScript_ykcrw"]
 script/source = "extends Control
 var enemyalive = false
 var enemyhealth = 0
-var enemy1health = 20
-var enemy2health = 20
-var enemy3health = 20
-var enemy4health = 20
+var enemy1health = 30
+var enemy2health = 30
+var enemy3health = 30
 var pdamage = 0
-var enemy1dmg = 1
-var enemy2dmg = 1
-var enemy3dmg = 1
-var enemy4dmg = 1
+var enemy1dmg = 2
+var enemy2dmg = 2
+var enemy3dmg = 2
 var handgonneshots = Pinventory.handgonne
 var playerturns = 1
 var turnsused = 0
@@ -31,11 +29,7 @@ func _enter_tree():
 	$BattleOverScreen.hide()
 	%Character.texture = PlayerData.ClassTexture
 	handgonneshots = Pinventory.handgonne
-	$combatflavortext.text = \"The bandits sneer and taunt you.\"
-	enemy1health = 20
-	enemy2health = 20
-	enemy3health = 20
-	enemy4health = 20
+	$combatflavortext.text = \"Your enemies study you like you're some sort of specimen.\"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -45,19 +39,25 @@ func _process(delta):
 		PlayerData.ambush = false
 	%battlestatus.text = \"Soldiers: \" + str(PlayerData.hp) + \"\\nInjured Soldiers: \" + str(wounded)
 	if enemy1health <= 0:
-		$CanvasLayer/HBoxContainer/Bandit.hide()
+		$CanvasLayer/HBoxContainer/Worm.hide()
 	if enemy2health <= 0:
-		$CanvasLayer/HBoxContainer/Bandit2.hide()
+		$CanvasLayer/HBoxContainer/Worm2.hide()
 	if enemy3health <= 0:
-		$CanvasLayer/HBoxContainer/Bandit3.hide()
-	if enemy4health <= 0:
-		$CanvasLayer/HBoxContainer/Bandit4.hide()
-	if enemy1health <= 0 && enemy2health <= 0 && enemy3health <= 0 && enemy4health <= 0:
+		$CanvasLayer/HBoxContainer/Worm3.hide()
+	if enemy1health <= 0 && enemy2health <= 0 && enemy3health <= 0 :
 		battlewon()
-	if PlayerData.hp <= 0:
+	if PlayerData.hp <= 0 && PlayerData.hp != PlayerData.max_hp:
 		get_tree().change_scene_to_file(\"res://game_over.tscn\")
 	if $AudioStreamPlayer2D.playing == false:
 		$AudioStreamPlayer2D.play()
+
+func battler():
+	while enemyalive == true:
+		if enemy1health <= 0 && enemy2health <= 0 && enemy3health <= 0 :
+			enemyalive == false
+			break
+		else:
+			pass
 		
 
 func enemyturns():
@@ -69,8 +69,6 @@ func enemyturns():
 		totaldamage += enemy2dmg
 	if enemy3health > 0:
 		totaldamage += enemy3dmg
-	if enemy4health > 0:
-		totaldamage += enemy4dmg
 	$combatflavortext.text = \"Your enemies clash with your soldiers, wounding \" + str(totaldamage) + \" of them.\"
 	PlayerData.hp -= totaldamage
 	wounded += totaldamage
@@ -87,9 +85,6 @@ func _on_attack_pressed():
 			turnsused +=1
 		elif enemy3health >0:
 			enemy3health -= pdamage
-			turnsused +=1
-		elif enemy4health > 0:
-			enemy4health -= pdamage
 			turnsused +=1
 		else:
 			pass
@@ -122,13 +117,7 @@ func _on_attack_pressed():
 	#while health >= 0:
 
 #0 for bandit 1 wendigo 2 strider 3 worm 4 for nothing
-var attack
-var health
-var dodge
-var bandits
-var wendigos
-var striders
-var worms
+
 
 
 func enemyfetch(enemy1,enemy2,enemy3,enemy4):
@@ -168,7 +157,6 @@ func _on_oilflask_pressed():
 		enemy1health -=20
 		enemy2health -=20
 		enemy3health -=20
-		enemy4health -=20
 		Pinventory.oilflask -= 1
 		$combatflavortext.text = \"The flask explodes into a wall of flame as your enemies recoil.\"
 	else:
@@ -180,7 +168,6 @@ func _on_handgonne_pressed():
 		enemy1health -=20
 		enemy2health -=20
 		enemy3health -=20
-		enemy4health -=20
 		handgonneshots -= 1
 		$combatflavortext.text = \"With a thundering boom, you spray shrapnel shards into your enemies.\"
 		
@@ -192,10 +179,10 @@ func _on_back_pressed():
 func battlewon():
 	dead = (wounded / 4) - saved
 	$BattleOverScreen.show()
-	%BattleGains.text = \"Of your \" + str(wounded) + \" wounded soldiers, \" + str(dead) + \" have died.\\n+15 Gold\"
-	PlayerData.gold+=15
+	%BattleGains.text = \"Of your \" + str(wounded) + \" wounded soldiers, \" + str(dead) + \" have died.\\n\"
 	$CanvasLayer/VBoxContainer.hide()
-	$BattleOverScreen/ExitButton.show()
+	$ExitButton.show()
+
 
 func _on_exit_button_pressed():
 	get_tree().change_scene_to_file(\"res://caravanscreen/caravan.tscn\")
@@ -213,7 +200,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_ls07c")
+script = SubResource("GDScript_ykcrw")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -222,7 +209,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_1nb5x")
+texture = ExtResource("1_mn10d")
 expand_mode = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -320,34 +307,27 @@ offset_left = 61.0
 offset_top = 56.0
 offset_right = 1077.0
 offset_bottom = 307.0
-script = ExtResource("3_ebhg2")
+script = ExtResource("2_t7l45")
 
-[node name="Bandit" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+[node name="Worm" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 120)
 layout_direction = 2
 layout_mode = 2
-texture = ExtResource("4_qpwwp")
+texture = ExtResource("3_fyfp5")
 expand_mode = 3
 
-[node name="Bandit2" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+[node name="Worm2" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 120)
 layout_direction = 2
 layout_mode = 2
-texture = ExtResource("4_qpwwp")
+texture = ExtResource("3_fyfp5")
 expand_mode = 3
 
-[node name="Bandit3" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
+[node name="Worm3" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 120)
 layout_direction = 2
 layout_mode = 2
-texture = ExtResource("4_qpwwp")
-expand_mode = 3
-
-[node name="Bandit4" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 120)
-layout_direction = 2
-layout_mode = 2
-texture = ExtResource("4_qpwwp")
+texture = ExtResource("3_fyfp5")
 expand_mode = 3
 
 [node name="Character" type="TextureRect" parent="."]
@@ -362,7 +342,7 @@ offset_top = -230.0
 offset_right = 247.0
 offset_bottom = -23.0
 grow_vertical = 0
-texture = ExtResource("8_6l5ig")
+texture = ExtResource("4_5x238")
 
 [node name="BattleOverScreen" type="Panel" parent="."]
 visible = false
@@ -383,20 +363,6 @@ offset_bottom = -267.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ExitButton" type="Button" parent="BattleOverScreen"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -98.5
-offset_top = -197.0
-offset_right = 98.5
-grow_horizontal = 2
-grow_vertical = 0
-text = "Battle Complete"
-
 [node name="battlestatus" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
@@ -416,7 +382,7 @@ offset_bottom = 40.0
 unique_name_in_owner = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_6n8ue")
+stream = ExtResource("5_l38iu")
 
 [node name="combatflavortext" type="RichTextLabel" parent="."]
 layout_mode = 0
@@ -426,6 +392,21 @@ offset_right = 792.0
 offset_bottom = 394.0
 text = "You spray the enemies with a blast of shrapnel!"
 
+[node name="ExitButton" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -98.5
+offset_top = -197.0
+offset_right = 98.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Battle Complete"
+
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/VBoxContainer/attack" to="." method="_on_attack_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/VBoxContainer/item" to="." method="_on_item_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/VBoxContainer/flee" to="." method="_on_flee_pressed"]
@@ -434,4 +415,4 @@ text = "You spray the enemies with a blast of shrapnel!"
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/Panel/VBoxContainer/lantern" to="." method="_on_lantern_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/Panel/VBoxContainer/oilflask" to="." method="_on_oilflask_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/Panel/Panel/VBoxContainer/handgonne" to="." method="_on_handgonne_pressed"]
-[connection signal="pressed" from="BattleOverScreen/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

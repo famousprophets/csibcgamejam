@@ -31,15 +31,15 @@ UI Design: Kenji
 Writing: Kenji 
 Art: Kazi
 
-All music, visuals, and code in this game are made by the creators of the game. Sound effects are from freesound.org
+All music, visuals, and code in this game are made by the creators of the game. 
 Gradients generated using CSS
 Sprites made in godot, libresprite, and asesprite.
 Shoutout to the many helpful people on the godot forums.
-Home screen music composed in TuxGuitar and recorded and edited in reaper.
-NO GENERATIVE AI was used in the creation of this game.
+
+NO GENERATIVE AI was used in the creation of this game. Keep art human.
 
 MIT License.
-YOU MAY NOT USE THIS GAME TO TRAIN GENERATIVE AI"
+Source code will be available once I clean up the horribly embarassing travesty that is the combat system."
 script = ExtResource("1_mxse8")
 
 [node name="goback" type="Button" parent="Panel"]

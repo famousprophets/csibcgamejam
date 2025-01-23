@@ -29,7 +29,7 @@ func _on_button_pressed():
 	choicemade()
 	$Panel/RichTextLabel.text = "You investigate the body and found some valuables in its pockets" #write the outcome of the scenario here
 	PlayerData.food += 5
-	PlayerData.medicalsupplies += 1
+	Pinventory.medicalsupplies += 1
 
 
 func _on_button_2_pressed():

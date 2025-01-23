@@ -37,7 +37,7 @@ func _on_button_2_pressed():
 
 func _on_exit_button_pressed():
 	if fight == true:
-		get_tree().change_scene_to_file("res://battle_scene.tscn")
+		get_tree().change_scene_to_file("res://battles/striderencounter.tscn")
 	else:
 		get_tree().change_scene_to_file("res://caravanscreen/caravan.tscn")
 

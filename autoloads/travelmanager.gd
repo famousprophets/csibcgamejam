@@ -17,13 +17,12 @@ func _process(delta: float) -> void:
 var rng = RandomNumberGenerator.new()
 
 func findnextlocation():
-	
 	rng.randomize()
 	
 	if locationstraveled == 5:
 		get_tree().change_scene_to_file("res://choicepaths/wolffind.tscn")
 	if locationstraveled == 17:
-		get_tree().change_scene_to_file("res://choicepaths/finalboss.tscn")
+		get_tree().change_scene_to_file("res://choicepaths/finale.tscn")
 	elif badluck > 4:
 		pass #good event
 		badluck = 0

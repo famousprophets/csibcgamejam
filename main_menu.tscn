@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhq5y2daui80f"]
+[gd_scene load_steps=5 format=3 uid="uid://bhq5y2daui80f"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_uua52"]
 [ext_resource type="Texture2D" uid="uid://cs14175hhfm66" path="res://images/MainMenu.png" id="1_yv1x6"]
@@ -9,8 +9,6 @@ font_size = 64
 font_color = Color(0.0606002, 0.665524, 0.692636, 1)
 outline_size = 20
 outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_syroo"]
 
 [node name="Main Menu" type="Control"]
 layout_mode = 3
@@ -43,19 +41,6 @@ grow_horizontal = 2
 text = "Heavy Reins
 "
 label_settings = SubResource("LabelSettings_anf30")
-
-[node name="Label2" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 380.0
-offset_top = 619.0
-offset_right = 644.0
-offset_bottom = 771.0
-grow_horizontal = 2
-text = "Test Ver: Alkalized Kevin"
-label_settings = SubResource("LabelSettings_syroo")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

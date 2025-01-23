@@ -28,13 +28,13 @@ func choicemade(): #this just hides all the choice buttons and shows the exit sc
 func _on_button_pressed(): 
 	choicemade()
 	$Panel/RichTextLabel.text = \"They agreed to join you on your adventure.\" #write the outcome of the scenario here
-	PlayerData.maxhp += 5
+	PlayerData.max_hp += 5
 
 func _on_button_2_pressed():
 	choicemade()
 	$Panel/RichTextLabel.text = \"There is a scuffle and you manage to subdue them with a few casualities.\"
 	PlayerData.gold += 5 # Replace with function body.
-	PlayerData.maxhp -= 3
+	PlayerData.max_hp -= 3
 
 func _on_button_3_pressed():
 	choicemade()

@@ -311,6 +311,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [connection signal="pressed" from="CaravanStuff/forage" to="." method="_on_forage_pressed"]
-[connection signal="pressed" from="nextloc" to="." method="_on_nextloc_pressed"]
 [connection signal="pressed" from="nextloc" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="nextloc" to="." method="_on_nextloc_pressed"]
 [connection signal="pressed" from="merch" to="." method="_on_merch_pressed"]

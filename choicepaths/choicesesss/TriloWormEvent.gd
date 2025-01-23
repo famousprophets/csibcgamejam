@@ -24,27 +24,29 @@ func choicemade(): #this just hides all the choice buttons and shows the exit sc
 	$Panel/ExitButton.show()
 
 func _on_button_pressed(): 
-	choicemade()
 	$Panel/RichTextLabel.text = "A TriloWorm bursts out of the ground in front of you. Since you're already prepared by drawing your sword, you get the first turn" #write the outcome of the scenario here
 	PlayerData.ambush = true 
 	fight = true 
+	choicemade()
 
 
 func _on_button_2_pressed():
-	choicemade()
 	if PlayerData.horses >= 4:
+		choicemade()
 		$Panel/RichTextLabel.text = "You and your group sucsessfully fleed"
+		
 	
 	else: 
 		$Panel/RichTextLabel.text = "A TriloWorm pops up from the ground in front of you before you could escape"
 		fight = true 
+		choicemade()
 
 
 
 func _on_button_3_pressed():
-	choicemade()
 	$Panel/RichTextLabel.text = "A TriloWorm pops up from the ground"
 	fight = true 
+	choicemade()
 
 
 
@@ -52,7 +54,7 @@ func _on_button_3_pressed():
 
 func _on_exit_button_pressed():
 	if fight == true:
-		get_tree().change_scene_to_file("res://battle_scene.tscn")
+		get_tree().change_scene_to_file("res://battles/wormencounter.tscn")
 	else:
 		get_tree().change_scene_to_file("res://caravanscreen/caravan.tscn")
 

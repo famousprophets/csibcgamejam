@@ -58,7 +58,7 @@ var bittered = false
 var hp : int = 30 #Represents the number of carvan members that are uninjured
 var max_hp : int = 30 #Represents the number of carvan members you have
 var veterans = 0 #veterans just deal as much damage as 2 regular soldiers
-var attack : int = 0.01 #increases or decreases attack damage by 5% overall. increase or decrease sparingly
+var attack : int = 1 #increases or decreases attack damage by 5% overall. increase or decrease sparingly
 var defense : int = 0 #increases or decreases rate of death for wounded soldiers by 5%. increase or decrease sparingly
 var teaching = 2 #increases chance of soldiers becoming veterans by 5%
 var levelupchance = teaching * 5
@@ -66,8 +66,8 @@ var deathchance : int = 25 - (defense * 5)
 var foodconsumption : int = max_hp / 3
 var food : int = 0 #amount of food. for every 3 members of the caravan, 1 food is consumed per event. keep that in mind when giving the player food
 var morale : int = 4 #morale slightly increases combat stats and the outcomes of some events. max morale is 10
-var injured : int = 0 
-var gold : int = 999 #coins are high value so dont grant too much. items cost from 1-7 gold, the most expensive being permanent upgrades
+var injured : int = max_hp - hp
+var gold : int = 3 #coins are high value so dont grant too much. items cost from 1-7 gold, the most expensive being permanent upgrades
 var horses = 4 #increases caravan speed if you have above 4
 var caravanspeed = (horses / 4) * 25
 var onfoot = false
@@ -101,11 +101,9 @@ func _process(delta: float) -> void:
 	caravanspeed = (horses / 4) * 25
 	deathchance = 25 - (defense * 5)
 	levelupchance = teaching * 5
-	injured = max_hp - hp
-	if hp > max_hp:
-		hp = max_hp
 	if Pinventory.medicalsupplies > 0:
 		healamount = healamount + Pinventory.medicalsupplies
+	
 
 @export var speed = 0
 @export var damage = 0

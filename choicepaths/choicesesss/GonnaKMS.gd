@@ -27,8 +27,6 @@ func _on_button_pressed():
 	choicemade()
 	$Panel/RichTextLabel.text = "You choose to let him rob you. He takes some of your resources and runs off. Your troops think you're an idiot" #write the outcome of the scenario here
 	PlayerData.food -= 20
-	PlayerData.oilflask -=2
-	PlayerData.bandage -=4
 	PlayerData.morale -=5 
 
 
@@ -54,7 +52,7 @@ func _on_button_4_pressed():
 
 func _on_exit_button_pressed():
 	if fight == true:
-		get_tree().change_scene_to_file("res://battle_scene.tscn")
+		get_tree().change_scene_to_file("res://battles/wendigoencounter.tscn")
 	else:
 		get_tree().change_scene_to_file("res://caravanscreen/caravan.tscn")
 

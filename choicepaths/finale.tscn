@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://cplviet404csf"]
+
+[node name="Finale" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 25
+text = "After a long and arduous journey, you finally see the precepice of Castle Anatolia. You brace yourself for the worst. The possibility that the castle has already fallen, and that there is nowhere safe in the world to go. That the rest of your life will be this constant struggle just to merely survive. However. As you approach the castle, you realize the opposite of what you expected is reality. The castle is pristine and clean. There are no monster corpses, no death rattle battle for the human race. Your caravan approaches the gate, and you are personally greeted in by the smiling king. A guard at the gate tells you that Castle Anatolia is blessed by divine forces, and that no nether beasts can come near it without being smitten. You are greeted by a pisturesque view of peace, thousands of townsfolk bustling about as if the sky hadn't just split mere weeks ago. You find yourself shuddering. As do the more veteran members of the caravan. Something about this place emates the feeling of pure evil, the feeling you grew so familiar with during your journey here. An although you stay on guard, nothing ever happens. You resume a normal life behind the castle wall. No call to glory, no beasts to be slain. And yet, the stench of evil remains.
+
+
+The End for now. thanks for playin"

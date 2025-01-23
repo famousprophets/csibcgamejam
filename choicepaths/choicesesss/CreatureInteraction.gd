@@ -49,7 +49,7 @@ func _on_button_4_pressed():
 
 func _on_exit_button_pressed():
 	if fight == true  or PlayerData.ambush == true :
-		get_tree().change_scene_to_file("res://battle_scene.tscn")
+		get_tree().change_scene_to_file("res://battles/striderencounter.tscn")
 	else:
 		get_tree().change_scene_to_file("res://caravanscreen/caravan.tscn")
 

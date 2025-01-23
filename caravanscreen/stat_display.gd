@@ -2,7 +2,7 @@ extends Label
 
 func _process(_delta):
 	var hp = PlayerData.hp
-	var inj = PlayerData.injured
+	var inj = PlayerData.max_hp - PlayerData.hp
 	var gold = PlayerData.gold
 	var food = PlayerData.food
 	var morale = PlayerData.morale

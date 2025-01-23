@@ -41,8 +41,9 @@ func _on_merch_pressed():
 
 
 func _on_horsebitters_pressed():
-	$RichTextLabel.text = "Your horses absolutely hate the smell of those bitters. But it does make them run very fast. Travel cost to reach the next location is halved."
-	await get_tree().create_timer(5).timeout
+	$RichTextLabel.text = "Your horses absolutely hate the smell of those bitters. But it does make them run very fast. Travel cost to reach the next location is halved.\ncurrently bugged so this just gives you distance immediately as a fix"
+	await get_tree().create_timer(8).timeout
+	Travelmanager.disttravel + PlayerData.caravanspeed
 	$RichTextLabel.text = ""
 	PlayerData.bittered = true
 	pass # Replace with function body.

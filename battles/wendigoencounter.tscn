@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bb2wa36qctn2v" path="res://gradient.png" id="1_trfrn"]
 [ext_resource type="Script" path="res://enemychars.gd" id="2_6wr6b"]
-[ext_resource type="Texture2D" uid="uid://evyhnev5puyd" path="res://images/enemies/Enemy_Bandit.png" id="3_p7uy5"]
+[ext_resource type="Texture2D" uid="uid://bhg83t4qdldu5" path="res://images/enemies/Enemy_wendigo.png" id="3_myhyy"]
 [ext_resource type="Texture2D" uid="uid://cdjjuqa0k4ahw" path="res://images/knight.png" id="4_0434i"]
 [ext_resource type="AudioStream" uid="uid://du7wsgc30j2jp" path="res://Music/FermataSlowed.wav" id="5_pn0s2"]
 
@@ -12,7 +12,7 @@ var enemyalive = false
 var enemyhealth = 0
 var enemy1health = 80
 var pdamage = 0
-var enemy1dmg = 1
+var enemy1dmg = 4
 var handgonneshots = Pinventory.handgonne
 var playerturns = 1
 var turnsused = 0
@@ -35,7 +35,7 @@ func _process(delta):
 		PlayerData.ambush = false
 	%battlestatus.text = \"Soldiers: \" + str(PlayerData.hp) + \"\\nInjured Soldiers: \" + str(wounded)
 	if enemy1health <= 0:
-		$CanvasLayer/HBoxContainer/Bandit.hide()
+		$CanvasLayer/HBoxContainer/Wendigo.hide()
 		battlewon()
 	if PlayerData.hp <= 0:
 		get_tree().change_scene_to_file(\"res://game_over.tscn\")
@@ -157,7 +157,6 @@ func battlewon():
 	dead = (wounded / 4) - saved
 	$BattleOverScreen.show()
 	%BattleGains.text = \"Of your \" + str(wounded) + \" wounded soldiers, \" + str(dead) + \" have died.\\n\"
-	PlayerData.max_hp-=dead
 	$CanvasLayer/VBoxContainer.hide()
 	$ExitButton.show()
 
@@ -287,32 +286,11 @@ offset_right = 1077.0
 offset_bottom = 307.0
 script = ExtResource("2_6wr6b")
 
-[node name="Bandit" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 120)
-layout_direction = 2
-layout_mode = 2
-texture = ExtResource("3_p7uy5")
-expand_mode = 3
-
 [node name="Wendigo" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
 custom_minimum_size = Vector2(120, 120)
 layout_direction = 2
 layout_mode = 2
-texture = ExtResource("3_p7uy5")
-expand_mode = 3
-
-[node name="Strider" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 120)
-layout_direction = 2
-layout_mode = 2
-texture = ExtResource("3_p7uy5")
-expand_mode = 3
-
-[node name="Worm" type="TextureRect" parent="CanvasLayer/HBoxContainer"]
-custom_minimum_size = Vector2(120, 120)
-layout_direction = 2
-layout_mode = 2
-texture = ExtResource("3_p7uy5")
+texture = ExtResource("3_myhyy")
 expand_mode = 3
 
 [node name="Character" type="TextureRect" parent="."]
